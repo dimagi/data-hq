@@ -153,6 +153,13 @@ EMAIL_HOST_USER = "user@domain.org"
 EMAIL_HOST_PASSWORD = "changeme"
 EMAIL_USE_TLS = True
 
+
+TABS = [
+    ('hqwebapp.views.dashboard', 'Dashboard'),
+    ('xformmanager.views.dashboard', 'XForms'),
+    ('receiver.views.show_submits', 'Submissions'),
+]
+
 # import local settings if we find them
 try:
     from localsettings import *
