@@ -27,6 +27,7 @@ urlpatterns = patterns('',
     (r'', include('hqwebapp.urls')),
     (r'', include('domain.urls')),
     (r'', include('receiver.urls')),
+    (r'', include('xformmanager.urls')),
     (r'user_registration', include("user_registration.urls"))
 )
 
