@@ -89,12 +89,12 @@ DEFAULT_APPS = (
 HQ_APPS = (
     'django_granular_permissions',
     'django_rest_interface',
-    'django_tables',
-    'user_registration',
-    'domain',
-    'receiver',
-    'xformmanager',
-    'hqwebapp'
+    'datahq.apps.django_tables',
+    'datahq.apps.user_registration',
+    'datahq.apps.domain',
+    'datahq.apps.receiver',
+    'datahq.apps.xformmanager',
+    'datahq.apps.hqwebapp'
 )
 
 TEMPLATE_DIRS = (
