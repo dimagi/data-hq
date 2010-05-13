@@ -111,9 +111,12 @@ INSTALLED_APPS = DEFAULT_APPS + HQ_APPS
 ####### Receiver Settings #######
 RECEIVER_SUBMISSION_PATH="data/submissions"
 RECEIVER_ATTACHMENT_PATH="data/attachments"
+RECEIVER_EXPORT_PATH="data"
 
 ####### XFormManager Settings #######
 XFORMMANAGER_SCHEMA_PATH="data/schemas"
+XFORMMANAGER_EXPORT_PATH="data"
+XFORMMANAGER_FORM_TRANSLATE_JAR="lib/form_translate.jar"
 
 
 ####### Domain settings  #######
