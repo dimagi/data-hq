@@ -9,10 +9,20 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'sqlite3'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'datahq.db'    # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
+
+# DATABASE_ENGINE = 'mysql'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+# DATABASE_NAME = 'datahq'    # Or path to database file if using sqlite3.
+# DATABASE_USER = 'root'             # Not used with sqlite3.
+# DATABASE_PASSWORD = ''         # Not used with sqlite3.
+
+
+DATABASE_ENGINE = 'postgresql_psycopg2'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME = 'datahq'    # Or path to database file if using sqlite3.
+DATABASE_USER = 'pgsql'             # Not used with sqlite3.
+DATABASE_PASSWORD = '1234'         # Not used with sqlite3.
+
+
+
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
@@ -142,8 +152,8 @@ LOGGEDOUT_TEMPLATE="loggedout.html"
 
 
 # email settings: these ones are the custom hq ones
-EMAIL_LOGIN="user@domain.org"
-EMAIL_PASSWORD="changeme"
+EMAIL_LOGIN="notifications@dimagi.com"
+EMAIL_PASSWORD="alpha321"
 EMAIL_SMTP_HOST="smtp.gmail.com"
 EMAIL_SMTP_PORT=587
 
@@ -152,8 +162,8 @@ EMAIL_SMTP_PORT=587
 # above
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "user@domain.org"
-EMAIL_HOST_PASSWORD = "changeme"
+EMAIL_HOST_USER = "notifications@dimagi.com"
+EMAIL_HOST_PASSWORD = "alpha321"
 EMAIL_USE_TLS = True
 
 
