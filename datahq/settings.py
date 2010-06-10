@@ -173,6 +173,15 @@ TABS = [
     ('receiver.views.show_submits', 'Submissions'),
 ]
 
+
+DJANGO_LOG_FILE = "log/datahq/datahq.django.log"
+LOG_SIZE = 1000000
+LOG_LEVEL   = "DEBUG"
+LOG_FILE    = "log/datahq/datahq.log"
+LOG_FORMAT  = "[%(name)s]: %(message)s"
+LOG_BACKUPS = 256 # number of logs to keep
+
+
 # import local settings if we find them
 try:
     from localsettings import *

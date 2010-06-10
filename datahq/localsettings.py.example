@@ -1,0 +1,14 @@
+# Postgres config
+DATABASE_ENGINE = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME = 'datahq'       # Or path to database file if using sqlite3.
+DATABASE_USER = 'postgres'     # Not used with sqlite3.
+DATABASE_PASSWORD = ''         # Not used with sqlite3.
+DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+
+DJANGO_LOG_FILE = "/var/log/datahq/datahq.django.log"
+LOG_SIZE = 1000000
+LOG_LEVEL   = "DEBUG"
+LOG_FILE    = "/var/log/datahq/datahq.log"
+LOG_FORMAT  = "[%(name)s]: %(message)s"
+LOG_BACKUPS = 256 # number of logs to keep
