@@ -23,7 +23,7 @@ os.environ['PYTHON_EGG_CACHE'] = '/var/data/.python_eggs'
 try:
     
     from datahq import settings as settings
-    from settings.logconfig import init_file_logging
+    from datahq.logconfig import init_file_logging
     init_file_logging(settings.DJANGO_LOG_FILE, settings.LOG_SIZE,
                       settings.LOG_BACKUPS, settings.LOG_LEVEL,
                       settings.LOG_FORMAT)
