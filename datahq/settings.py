@@ -10,22 +10,6 @@ ADMINS = (
 MANAGERS = ADMINS
 
 
-# DATABASE_ENGINE = 'mysql'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-# DATABASE_NAME = 'datahq'    # Or path to database file if using sqlite3.
-# DATABASE_USER = 'root'             # Not used with sqlite3.
-# DATABASE_PASSWORD = ''         # Not used with sqlite3.
-
-
-DATABASE_ENGINE = 'postgresql_psycopg2'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'datahq'    # Or path to database file if using sqlite3.
-DATABASE_USER = 'pgsql'             # Not used with sqlite3.
-DATABASE_PASSWORD = '1234'         # Not used with sqlite3.
-
-
-
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -174,14 +158,6 @@ TABS = [
     ('receiver.views.show_submits', 'Submissions'),
     # ('program.views.list_programs', 'Programs')
 ]
-
-
-DJANGO_LOG_FILE = "log/datahq/datahq.django.log"
-LOG_SIZE = 1000000
-LOG_LEVEL   = "DEBUG"
-LOG_FILE    = "log/datahq/datahq.log"
-LOG_FORMAT  = "[%(name)s]: %(message)s"
-LOG_BACKUPS = 256 # number of logs to keep
 
 
 # import local settings if we find them
