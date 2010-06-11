@@ -100,6 +100,11 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = DEFAULT_APPS + HQ_APPS
 
+# after login, django redirects to this URL
+# rather than the default 'accounts/profile'
+LOGIN_REDIRECT_URL='/'
+
+
 # CZUE:  these have been added as new custom properties to the settings
 # and are migrated from the previous rapidsms framework
 
