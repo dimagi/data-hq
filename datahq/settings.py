@@ -104,7 +104,8 @@ HQ_APPS = (
     'datahq.apps.domain',
     'datahq.apps.receiver',
     'datahq.apps.xformmanager',
-    'datahq.apps.hqwebapp'
+    'datahq.apps.hqwebapp',
+    'datahq.apps.program',
 )
 
 TEMPLATE_DIRS = (
@@ -171,6 +172,7 @@ TABS = [
     ('hqwebapp.views.dashboard', 'Dashboard'),
     ('xformmanager.views.dashboard', 'XForms'),
     ('receiver.views.show_submits', 'Submissions'),
+    # ('program.views.list_programs', 'Programs')
 ]
 
 
