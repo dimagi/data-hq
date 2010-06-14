@@ -2,6 +2,7 @@ import hashlib
 from domain.models import Domain, Membership
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
+import tempfile
 
 def create_user_and_domain(username='brian', 
                            password='test',
@@ -43,7 +44,22 @@ def create_user_and_domain(username='brian',
         mem.save()
                 
     return (user, domain)
-                                
+
+def replace_in_file(filename, to_replace, replace_with):
+    """
+    Replace some stuff in a file with some other stuff,
+    returning a handle to the new file.  Useful for testing
+    mostly-similar xforms with small changes.
+    """   
+    xml_data = open(filename, "rb").read()  
+    xml_data = xml_data.replace(to_replace, replace_with)
+    tmp_file_path = tempfile.TemporaryFile().name
+    tmp_file = open(tmp_file_path, "w")
+    tmp_file.write(xml_data)
+    tmp_file.close()
+    return tmp_file_path
+    
+                            
 def _get_salted_pw(password, salt="12345"):
     hashed_pass = hashlib.sha1(salt+password).hexdigest()
     return 'sha1$%s$%s' % (salt, hashed_pass)
