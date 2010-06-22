@@ -90,6 +90,7 @@ HQ_APPS = (
     'datahq.apps.xformmanager',
     'datahq.apps.hqwebapp',
     'datahq.apps.program',
+    'datahq.apps.phone',
 )
 
 TEMPLATE_DIRS = (
