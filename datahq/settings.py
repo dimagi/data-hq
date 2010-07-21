@@ -56,6 +56,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'domain.middleware.DomainMiddleware',
+    'django_digest.middleware.HttpDigestMiddleware',
 )
 
 ROOT_URLCONF = 'datahq.urls'
@@ -81,6 +82,8 @@ DEFAULT_APPS = (
 )
 
 HQ_APPS = (
+    'django_digest',
+    'django_extensions', 
     'django_granular_permissions',
     'django_rest_interface',
     'datahq.apps.django_tables',
@@ -91,6 +94,7 @@ HQ_APPS = (
     'datahq.apps.hqwebapp',
     'datahq.apps.program',
     'datahq.apps.phone',
+    'datahq.apps.provider',
 )
 
 TEMPLATE_DIRS = (
@@ -165,6 +169,7 @@ TABS = [
     # ('program.views.list_programs', 'Programs')
 ]
 
+DIGEST_ENFORCE_NONCE_COUNT = False
 
 # import local settings if we find them
 try:

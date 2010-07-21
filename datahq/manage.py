@@ -5,6 +5,7 @@ import sys, os
 # add our local apps and shared directory to the path for convenience
 filedir = os.path.dirname(__file__)
 sys.path.append(os.path.join(filedir,'apps'))
+sys.path.append(os.path.join(filedir,'care_apps'))
 sys.path.append(os.path.join(filedir,'shared_code'))
 
 try:
