@@ -94,7 +94,7 @@ HQ_APPS = (
     'datahq.apps.hqwebapp',
     'datahq.apps.program',
     'datahq.apps.phone',
-    'datahq.apps.provider',
+    'datahq.apps.pactprovider',
     
     
     'datahq.care_apps.keymaster',
