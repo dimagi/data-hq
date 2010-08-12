@@ -15,7 +15,6 @@ class Provider(models.Model):
     """
     
     id = models.CharField(_('Provider Unique id'), max_length=32, unique=True, default=make_uuid, primary_key=True, editable=False)
-    
     user = models.ForeignKey(User, related_name='provider_user') #note, you can be multiple providers for a given user.
 
     #lame example fields

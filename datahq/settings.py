@@ -95,6 +95,7 @@ HQ_APPS = (
     'datahq.apps.program',
     'datahq.apps.phone',
     'datahq.apps.provider',
+    'datahq.care_apps.keymaster',
 )
 
 TEMPLATE_DIRS = (
@@ -120,8 +121,11 @@ RECEIVER_EXPORT_PATH="data"
 
 ####### XFormManager Settings #######
 XFORMMANAGER_SCHEMA_PATH="data/schemas"
-XFORMMANAGER_EXPORT_PATH="data"
+XFORMMANAGER_EXPORT_PATH="data/exports"
 XFORMMANAGER_FORM_TRANSLATE_JAR="lib/form_translate.jar"
+
+#####Encryption Keys######
+KEYSTORE_PATH='data/keystore'
 
 
 ####### Domain settings  #######
