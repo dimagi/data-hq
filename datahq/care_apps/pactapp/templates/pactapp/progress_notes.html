@@ -1,0 +1,36 @@
+{% extends base_template %}
+{% load i18n %}
+{% load submission_tags %}
+{% block title %}{% trans "All Progress Notes" %}{% endblock %}
+
+<!-- stylesheets -->
+{% block page_stylesheets %}
+    <link type="text/css" rel="stylesheet" href="/static/receiver/stylesheets/receiver.css" />
+{% endblock %}
+
+{% block content %}
+<h2>{% trans "All Progress Note Submissions" %}</h2>
+<table>
+   <thead>
+    <tr>
+        <th>ID</th><th>Encounter Date</th><th>From</th><th>Patient</th><th>Actions</th>
+    </tr>
+   </thead>
+   {% for note in notes %}      
+   	<tr class="{% cycle 'odd' 'even' %}">
+   		<td>{{note.id}}</td>
+   		<td>{{note.meta_timeend|date}}</td>
+   		<td>{{note.meta_username}}</td>
+   		<td>{{note.progress_note_note_pact_id}}</td>
+   		<td>
+   			<a href="{% url progress_note note.id %}">View Note</a> | <a href="{% url single_instance 7 note.id %}">View Raw Data</a>  
+   		</td>   		
+   	</tr>
+   {% endfor %}
+   </table>
+
+{% with submissions as data %}
+{% include "hqwebapp/partials/pagination.html" %}
+{% endwith %}
+
+{% endblock %}

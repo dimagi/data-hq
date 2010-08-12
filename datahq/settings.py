@@ -95,8 +95,11 @@ HQ_APPS = (
     'datahq.apps.program',
     'datahq.apps.phone',
     'datahq.apps.provider',
+    
+    
     'datahq.care_apps.keymaster',
     'datahq.care_apps.pactdata',
+    'datahq.care_apps.pactapp',
 )
 
 TEMPLATE_DIRS = (
@@ -171,6 +174,7 @@ TABS = [
     ('hqwebapp.views.dashboard', 'Dashboard'),
     ('xformmanager.views.dashboard', 'XForms'),
     ('receiver.views.show_submits', 'Submissions'),
+    ('pactapp.views.progress_notes', 'Progress Notes'),
     # ('program.views.list_programs', 'Programs')
 ]
 

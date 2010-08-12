@@ -1,0 +1,61 @@
+{% extends "single_instance.html" %}
+{% block mgr_content %}
+{{block.super}}
+<hr>
+{% if referrals %}
+
+<h3>Referrals</h3>
+	<table>
+	    <thead>
+	       <tr>
+	          <th>Referral Type:</th>
+	          <th>Date:</th>
+	       </tr>
+	    </thead>
+	    <tbody>
+	    {% for ref in referrals %}
+	    <tr class="{% cycle 'odd' 'even' %}">
+	        <td><b>{{ ref.ref_type}}</b></td>
+	        <td>{{ ref.ref_date|date }}</td>
+	    </tr>
+	    {% endfor %}
+	    </tbody>
+	</table>
+{% else %}
+<h3>No Referral</h3>
+{% endif %}
+<hr>
+{% if bloodworks %}
+<h3>Bloodwork</h3>
+	<table>
+	    <thead>
+	       <tr>
+	       	  <th>Test ID:</th>	  
+	          <th>Test Date:</th>	          
+	          <th>Viral Load</th>
+	          <th>CD4 Count</th>
+	          <th>Viral Load Result</th>
+	          <th>CD4 Count Result</th>
+	          <th>CD4 Percent Result</th>	          
+	       </tr>
+	    </thead>
+	    <tbody>
+	    {% for bw in bloodworks %}
+	    <tr class="{% cycle 'odd' 'even' %}">
+	        <td>{{ bw.id }}</td>
+	        <td>{{ bw.test_date|date}}</td>
+	        <td>{{ bw.tests_vl }}</td>
+	        <td>{{ bw.tests_cd }}</td>
+	        <td>{{ bw.vl }}</td>	        
+	        <td>{{ bw.cd_cdcnt }}</td>
+	        <td>{{ bw.cd_cdper }}</td>	        
+	    </tr>
+	    {% endfor %}
+	    </tbody>
+	</table>
+
+{% else %}
+<h3>No Bloodwork</h3>
+{% endif %}
+
+{% endblock mgr_content %}

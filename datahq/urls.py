@@ -31,6 +31,7 @@ urlpatterns = patterns('',
     (r'', include('program.urls')),
     (r'', include('provider.urls')),
     (r'', include('keymaster.urls')),
+    (r'', include('pactapp.urls')),
     (r'user_registration', include("user_registration.urls"))
 )
 
