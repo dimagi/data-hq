@@ -96,6 +96,7 @@ HQ_APPS = (
     'datahq.apps.phone',
     'datahq.apps.provider',
     'datahq.care_apps.keymaster',
+    'datahq.care_apps.pactdata',
 )
 
 TEMPLATE_DIRS = (
