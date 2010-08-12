@@ -10,8 +10,8 @@ class IdentifierTypeAdmin(admin.ModelAdmin):
 admin.site.register(IdentifierType, IdentifierTypeAdmin)
 
 class PatientIdentifierAdmin(VersionAdmin):
-    list_display=('id', 'id_type', 'patient', 'id_value',)
-    list_filter = ['id_type', 'patient']
+    list_display=('id', 'id_type', 'id_value',)
+    list_filter = ['id_type']
 admin.site.register(PatientIdentifier, PatientIdentifierAdmin)
 
 class AddressAdmin(VersionAdmin):

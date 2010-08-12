@@ -82,6 +82,7 @@ DEFAULT_APPS = (
 )
 
 HQ_APPS = (
+    'reversion',
     'django_digest',
     'django_extensions', 
     'django_granular_permissions',
@@ -94,12 +95,14 @@ HQ_APPS = (
     'datahq.apps.hqwebapp',
     'datahq.apps.program',
     'datahq.apps.phone',
-    'datahq.apps.pactprovider',
-    
-    
+
+
+    'datahq.care_apps.provider',
+#    'datahq.apps.provider',
     'datahq.care_apps.keymaster',
     'datahq.care_apps.pactdata',
     'datahq.care_apps.pactapp',
+    'datahq.care_apps.pactpatient',
 )
 
 TEMPLATE_DIRS = (

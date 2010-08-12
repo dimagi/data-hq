@@ -40,7 +40,7 @@ def get_ghetto_registration_block(user):
     #promoter_member_id is the nasty id from the csv, this should be fixed to match the Partners id -->
     resp_txt = ""    
     prov = Provider.objects.filter(user=user)[0] #hacky nasty
-    return registration_block % (user.username, user.password, prov.id, user.date_joined.strftime("%Y-%m-%dT%H:%M:%S.000"), uuid.uuid1().hex, user.id, user.first_name + " " + user.last_name, prov.job_title)
+    return registration_block % (user.username, user.password, prov.id, user.date_joined.strftime("%Y-%m-%dT%H:%M:%S.000"), uuid.uuid1().hex, user.id, user.first_name, "blah")
     
 #    <phone1>asfddsf</phone1> (2 and 3)
 #   <address1>concated</address1> (and 2)
@@ -50,7 +50,8 @@ def get_ghetto_phone_block(patient):
     ret = ''
     count = 1
     for num in pnums:
-        ret += "<phone%d>%s</phone%d>" % (count, num.id_value, count)
+        ret += "<phone%d>%s</phone%d>" % (count, num.id_value.replace("(","").replace(")",""), count)
+        #ret += "<homephone>%s</homephone>" % (num.id_value)
         count += 1    
     return ret
 
@@ -61,6 +62,7 @@ def get_ghetto_address_block(patient):
     for addr in addrs:       
         addconcat = "%s: %s %s, %s %s" % (addr.type, addr.street1, addr.city, addr.state, addr.postal_code)        
         ret += "<address%d>%s</address%d>" % (count,addconcat, count)
+        #ret += "<homeaddress>%s</homeaddress>" % (addconcat)
         count += 1
     
     return ret
@@ -100,15 +102,17 @@ def get_ghetto_patient_block(patient):
     
     
     return patient_block %(patient.id, \
-                           patient.added_date, \
+                           patient.added_date.strftime("%Y-%m-%dT%H:%M:%S.000"), \
                            patient.user.id, \
-                           patient.username, \
+                           patient.user.username, \
                            pactid.id_value, \
                            pactid.id_value, \
                            patient.sex,                           
                            phone_block,\
                            address_block,\
-                           patient.dob,
+                           #patient.dob,
+                           '1977-1-1',
+ 
                            patient.user.first_name[0].lower() + patient.user.last_name[0].lower(),\
                            ' '.join(promoters_arr))
            
@@ -130,10 +134,11 @@ def case_list(request):
     patient_block = ""
     for pt in Patient.objects.all():
         patient_block += get_ghetto_patient_block(pt)
-    resp_txt = "<restoredata>%s %s</restoredata>" % (regblock, patient_block)
+    resp_text = "<restoredata>%s %s</restoredata>" % (regblock, patient_block)
+    logging.error(resp_text)
     
     response = HttpResponse(mimetype='text/xml')
-    response.write(resp_txt)
+    response.write(resp_text)
     return response
     
 @login_required    

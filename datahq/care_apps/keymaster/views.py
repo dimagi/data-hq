@@ -19,7 +19,6 @@ import kzmanage
 
 @httpdigest
 def get_device_key(request):
-    logging.error(str(request))
     try:
 	rosaheader = "HTTP_X_OPENROSA_DEVICEID"
 	#'x-openrosa-deviceid'
@@ -34,8 +33,11 @@ def get_device_key(request):
     try:
         dev = DeviceKey.objects.all().get(device_id=device_id)
         keyjson = dev.keystring
+        #nprint "got it from database"
     except:    
+        #nprint "didn't get it from database, trying from file"
         keyjson = kzmanage.make_device_key(device_id)
+        #nprint "made it from kzmanage"
         newdev = DeviceKey()
         newdev.device_id = device_id
         newdev.keystring = keyjson

@@ -1,6 +1,6 @@
 import csv
 from sys import stdin
-from patient.models import *
+from pactpatient.models import *
 
 # is there seriously no 'Address 2 - Country'?
 HEADER = (
