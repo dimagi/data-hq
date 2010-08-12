@@ -3,7 +3,6 @@ import logging
 import os
 import settings
 
-from django.shortcuts import render_to_response, render_to_string
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.http import HttpResponse,Http404, HttpResponseRedirect
@@ -18,9 +17,19 @@ from django_digest.decorators import *
 from keymaster.models import DeviceKey
 import kzmanage
 
+@httpdigest
 def get_device_key(request):
-    logging.debug(request.GET.keys())
-    device_id = request.GET['x-openrosa-deviceid']
+    logging.error(str(request))
+    try:
+	rosaheader = "HTTP_X_OPENROSA_DEVICEID"
+	#'x-openrosa-deviceid'
+        device_id = request.META[rosaheader]
+    except:
+        logging.error("Error, invalid request, no openrosa-deviceid in header")
+        response = HttpResponse(mimetype='text/plain')
+        response.write("No key") 
+        return response
+        
     logging.debug(device_id)
     try:
         dev = DeviceKey.objects.all().get(device_id=device_id)
