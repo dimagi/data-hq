@@ -60,7 +60,7 @@ def get_ghetto_address_block(patient):
     ret = ''
     count = 1
     for addr in addrs:       
-        addconcat = "%s: %s %s, %s %s" % (addr.type, addr.street1, addr.city, addr.state, addr.postal_code)        
+        addconcat = "%s %s, %s %s" % (addr.street1, addr.city, addr.state, addr.postal_code)        
         ret += "<address%d>%s</address%d>" % (count,addconcat, count)
         #ret += "<homeaddress>%s</homeaddress>" % (addconcat)
         count += 1
