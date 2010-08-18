@@ -118,9 +118,6 @@ INSTALLED_APPS = DEFAULT_APPS + HQ_APPS
 LOGIN_REDIRECT_URL='/'
 
 
-# CZUE:  these have been added as new custom properties to the settings
-# and are migrated from the previous rapidsms framework
-
 ####### Receiver Settings #######
 RECEIVER_SUBMISSION_PATH="data/submissions"
 RECEIVER_ATTACHMENT_PATH="data/attachments"
