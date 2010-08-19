@@ -87,10 +87,13 @@ HQ_APPS = (
     'datahq.apps.user_registration',
     'datahq.apps.domain',
     'datahq.apps.receiver',
-    'datahq.apps.xformmanager',
     'datahq.apps.hqwebapp',
     'datahq.apps.program',
     'datahq.apps.phone',
+    # lame: xformmanager needs to be run last
+    # because it resets xmlrouter, which breaks functionality in
+    # other code which is dependent on xmlrouter's global initialization
+    'datahq.apps.xformmanager',
 )
 
 TEMPLATE_DIRS = (
