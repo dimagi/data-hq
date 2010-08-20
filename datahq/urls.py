@@ -32,7 +32,8 @@ urlpatterns = patterns('',
     (r'', include('provider.urls')),
     (r'', include('keymaster.urls')),
     (r'', include('pactapp.urls')),
-    (r'user_registration', include("user_registration.urls"))
+    (r'user_registration', include("user_registration.urls")),
+    (r'dots', include('dots.urls')),
 )
 
 # magic static media server (idea + implementation lifted from rapidsms)
