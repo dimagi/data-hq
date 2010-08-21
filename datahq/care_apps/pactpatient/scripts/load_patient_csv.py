@@ -124,16 +124,22 @@ def run():
         for phone in phones:                    
             ident = phone[0]
             val = phone[1]
+            if ident == "Son does not know status. Sons cell phone.":
+                ident = "Son"
+            if ident == "Robert Scott (BR-Healthcare proxy)":
+                ident = "Proxy"
             try:                
                 phone_type = IdentifierType.objects.get(description="Phone Number", shortname=ident)
             except:
                 phone_type = IdentifierType(description="Phone Number", shortname=ident)
+                print "*** phone_type: " + ident
                 phone_type.save()
                 
             try:                            
                 phone_value = PatientIdentifier.objects.get(id_type=phone_type, id_value=val)
             except:
                 phone_value = PatientIdentifier(id_type=phone_type, id_value=val)
+                print "*** phone_value: " + val
                 phone_value.save()
                 
             
