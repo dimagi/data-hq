@@ -28,7 +28,7 @@ class AddressInline(admin.StackedInline):
 class PatientAdmin(admin.ModelAdmin):
     list_display=('id', 'user', 'dob', 'is_primary')
     list_filter = []
-    inlines = [PatientIdentifierInline, AddressInline]    
+    #inlines = [PatientIdentifierInline, AddressInline]    
 admin.site.register(Patient, PatientAdmin)
 
 
