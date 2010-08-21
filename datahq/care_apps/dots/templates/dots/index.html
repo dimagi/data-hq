@@ -6,10 +6,109 @@
 {% endblock %}
 
 {% block page_stylesheets %}
-    <link type="text/css" rel="stylesheet" href="/static/receiver/stylesheets/dots.css" />
+    <link type="text/css" rel="stylesheet" href="/static/dots/stylesheets/dots.css" />
 {% endblock %}
 
+{% block javascripts %}
+	<script type="text/javascript">
+	var date_helper = "yyyy-dd-mm";
+	function get_url(){
+		var patient_id = $('#patients option:selected').attr('value');
+		var start_date = $('#start-date').attr('value');
+		var end_date = $('#end-date').attr('value');
+		if(start_date==date_helper) start_date = '';
+		if(end_date==date_helper) end_date = '';
+		return "dots?patient="+patient_id+"&start="+start_date+"&end="+end_date;
+	}
+	$(document).ready(function(){
+		$('#patients').change(function(){
+			$(document).attr('location', get_url());
+		});
+		$('input.date').each(function(){
+			if(! $(this).attr('value')) {
+				$(this).attr('value', date_helper);
+			}
+		}).focus(function(){
+			$(this).select();
+		});
+		$('#start-date').change(function(){
+			$(document).attr('location', get_url());
+		});
+		$('#end-date').change(function(){
+			$(document).attr('location', get_url());
+		});
+	});
+	</script>
+{% endblock %}
 
 {% block content %}
-
+	<h1>DOTS Patient Data</h1>
+	<h2>Adherence Data for 
+	<select id="patients">
+		<option value="dots" {% if not patient %} selected="selected" {% endif %}>
+			No patient selected
+		</option>
+		{% for p in patients %}
+			<option value="{{p.id}}"
+				{% ifequal p.id patient.id %} selected="selected" {% endifequal %} >
+				{{p.user.get_full_name}}
+			</option>
+		{% endfor %}
+	</select>
+	from
+	<input id="start-date" class="date" type="text" value="{{start_date}}"></input>
+	until
+	<input id="end-date" class="date" type="text" value="{{end_date}}"></input>
+	
+	</h2> 
+	{% if patient %}
+		<table class="calendar">
+			<tr>
+				<th>{% trans "Monday" %}</th>
+				<th>{% trans "Tuesday" %}</th>
+				<th>{% trans "Wednesday" %}</th>
+				<th>{% trans "Thursday" %}</th>
+				<th>{% trans "Friday" %}</th>
+				<th>{% trans "Saturday" %}</th>
+				<th>{% trans "Sunday" %}</th>
+			</tr>
+		{% for week in weeks %}
+			<tr>
+				{% for date, entries in week %}
+					{% if date %}
+						<td>
+							<div class="date-label">{{date}}</div>
+							<div class="calendar-cell">
+								{% for drug_type, times_of_day in entries %}
+								<div class="drug-cell">
+									<div class="drug-label">{% trans drug_type %}</div>
+									{% for time_of_day, obs in times_of_day %}
+										<div class="time-label">{% trans time_of_day %}</div>
+										<div class="time-cell">
+											{% if obs %}
+												{% for ob in obs %}
+													<div class="observation">
+														<div class="ob-{{ob.adherence}}">
+															{{ob.adherence}}
+														</div>
+														<div class="ob-{{ob.method}}">
+															{{ob.method}}
+														</div>
+													</div>
+												{% endfor %}
+											{% endif %}
+										</div>
+									{% endfor %}
+								</div>
+								{% endfor %}
+							</div>
+						</td>
+					{% else %}
+						<td class="empty"></td>
+					{% endif %}
+				{% endfor %}
+			</tr>
+		{% endfor %}
+		</table>
+	{% endif %}
 {% endblock %}

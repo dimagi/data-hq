@@ -1,0 +1,66 @@
+h2 > * {
+    font-size: .6em;
+}
+input.date {
+    width: 8em;
+    text-align: center;
+}
+
+table.calendar {
+    border-collapse: collapse;
+}
+table.calendar td, th {
+    vertical-align: top;
+    border: 1px solid #DDD;
+}
+table.calendar td {
+    width: 14%; /* one seventh */
+    padding: 0px;
+}
+table.calendar td.empty {
+    background-color: #EEE;
+}
+div.date-label {
+    border-bottom: 1px solid #888;
+    text-align: center;
+    margin: .2em .6em;
+    margin-bottom: 0;
+}
+div.calendar-cell {
+}
+div.drug-cell {
+    border-right: 1px solid #EEE;
+    width: 6em;
+    display: table-cell;
+}
+div.drug-cell:last-child {
+    border-right: none;
+}
+div.drug-label {
+    font-size: .8em;
+    border-bottom: 1px solid #EEE;
+    color: #BBB;
+    font-variant: small-caps;
+    text-align: center;
+}
+div.time-label {
+    font-size: .6em;
+    font-variant: small-caps;
+    color: #BBB;
+    margin-left: .2em;
+}
+div.time-cell {
+    height: 2em;
+}
+div.observation {
+    padding: .2em 1em;
+}
+div.observation div {
+    text-indent: -10000%;
+}
+.ob-empty {
+    background: url('/static/dots/icons/check.jpg') no-repeat scroll top left;
+}
+.ob-partial {
+    background: url('/static/dots/icons/exclamation-point.jpg') no-repeat scroll top left;
+}

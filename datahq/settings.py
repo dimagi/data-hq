@@ -103,6 +103,7 @@ HQ_APPS = (
     'datahq.care_apps.pactdata',
     'datahq.care_apps.pactapp',
     'datahq.care_apps.pactpatient',
+	'datahq.care_apps.dots',
 )
 
 TEMPLATE_DIRS = (
@@ -176,6 +177,7 @@ TABS = [
     ('receiver.views.show_submits', 'Submissions'),
     ('pactapp.views.progress_notes', 'Progress Notes'),
     # ('program.views.list_programs', 'Programs')
+	('dots.views.index', 'DOTS'),
 ]
 
 DIGEST_ENFORCE_NONCE_COUNT = False
