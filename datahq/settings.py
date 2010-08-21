@@ -39,7 +39,7 @@ MEDIA_URL = '/static'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = '/static/hqwebapp/admin-media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'fixme'
@@ -55,8 +55,11 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'shared_code.threadlocals.ThreadLocals',
+    'auditor.middleware.AuditMiddleware',
     'domain.middleware.DomainMiddleware',
     'django_digest.middleware.HttpDigestMiddleware',
+    
 )
 
 ROOT_URLCONF = 'datahq.urls'
@@ -95,12 +98,12 @@ HQ_APPS = (
     'datahq.apps.hqwebapp',
     'datahq.apps.program',
     'datahq.apps.phone',
-
-
+    'datahq.apps.logtracker',
+    'datahq.apps.auditor',
+    
     'datahq.care_apps.provider',
-#    'datahq.apps.provider',
     'datahq.care_apps.keymaster',
-    'datahq.care_apps.pactdata',
+    'datahq.care_apps.pactdata',  #hacky note (dmyung): if you get a too long field error on syncdb, comment this out and syncdb, then comment it back in when you want to run
     'datahq.care_apps.pactapp',
     'datahq.care_apps.pactpatient',
 	'datahq.care_apps.dots',
@@ -169,6 +172,46 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "notifications@dimagi.com"
 EMAIL_HOST_PASSWORD = "alpha321"
 EMAIL_USE_TLS = True
+
+AUDIT_VIEWS = [
+               'xformmanager.views.dashboard',
+               'xformmanager.views.remove_xform',
+               'xformmanager.views.new_form_data_group',
+               'xformmanager.views.submit_data',
+               'xformmanager.views.single_xform',
+               'xformmanager.views.get_xform',
+               'xformmanager.views.export_xml',
+               'xformmanager.views.plain_data',
+               'xformmanager.views.data',
+               'xformmanager.views.export_csv',
+               'xformmanager.views.readable_xform',
+               'xformmanager.views.get_csv_from_form',
+               'xformmanager.views.data',               
+               'receiver.views.single_attachment',
+               'receiver.views.single_submission',
+               'receiver.views.domain_submit',
+               'receiver.views.domain_resubmit',
+               'receiver.views.orphaned_data',
+               'receiver.views.delete_submission',
+               'receiver.views.show_submits',
+               'receiver.views.show_dupes',               
+               ]
+
+AUDIT_MODEL_SAVE = ['django.contrib.auth.models.User', 
+                    'xformmanager.models.Metadata',
+                    'xformmanager.models.FormDefModel',
+                    'receiver.models.Submission',
+                    'pactpatient.models.IdentifierType',
+                    'pactpatient.models.Address',
+                    'pactpatient.models.PatientIdentifier',
+                    'pactpatient.models.Patient',
+                    'provider.models.Provider',
+                    'keymaster.models.DeviceKey',    
+                    
+                    'domain.models.Domain',
+                    'domain.models.Membership',
+               
+                    ]
 
 
 TABS = [
