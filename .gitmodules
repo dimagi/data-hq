@@ -1,0 +1,3 @@
+[submodule "corehq"]
+	path = corehq
+	url = git://github.com/dimagi/core-hq.git
