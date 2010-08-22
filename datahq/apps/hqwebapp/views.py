@@ -170,7 +170,7 @@ def login(request, template_name="login_and_password/login.html",
     """Displays the login form and handles the login action."""
 
     redirect_to = request.REQUEST.get(redirect_field_name, '')
-    
+    request.base_template = settings.BASE_TEMPLATE
     if request.method == "POST":
         form = authentication_form(data=request.POST)
         if form.is_valid():
@@ -218,8 +218,10 @@ def login(request, template_name="login_and_password/login.html",
 
 def logout(request, next_page=None, template_name="hqwebapp/loggedout.html", redirect_field_name=REDIRECT_FIELD_NAME):
     "Logs out the user and displays 'You are logged out' message."
+    request.base_template = settings.BASE_TEMPLATE 
     from django.contrib.auth import logout
-    logout(request)
+    AuditEvent.objects.audit_logout(request, request.user)
+    logout(request)    
     if next_page is None:
         redirect_to = request.REQUEST.get(redirect_field_name, '')
         if redirect_to:
