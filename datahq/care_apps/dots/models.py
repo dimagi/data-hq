@@ -19,7 +19,7 @@ METHOD_CHOICES = (
 )
 TIME_LABEL_LOOKUP = (
     (),
-    ('Dose'),
+    ('Dose',),
     ('Morning', 'Evening'),
     ('Morning', 'Noon', 'Evening'),
     ('Morning', 'Noon', 'Evening', 'Bedtime'),
@@ -46,7 +46,7 @@ class Observation(Model):
     def get_time_label(self):
         """
         returns an English time label out of
-        'Dose', 'Morning', 'Noon', '
+        'Dose', 'Morning', 'Noon', 'Evening', 'Bedtime'
         """
         return TIME_LABEL_LOOKUP[self.total_doses][self.dose_number]
     @classmethod

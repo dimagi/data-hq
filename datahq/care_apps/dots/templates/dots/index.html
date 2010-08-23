@@ -59,8 +59,16 @@
 	<input id="start-date" class="date" type="text" value="{{start_date}}"></input>
 	until
 	<input id="end-date" class="date" type="text" value="{{end_date}}"></input>
-	
-	</h2> 
+	</h2>
+	{% if patient and bad_date_range %}
+		<p class='date-range-warning'>
+			Just so you know, the date range you're looking at is
+			<strong>too {% if end_date < first_observation %}early{% else %}late{% endif %}</strong>.
+			We only have data for <strong>{{patient.user.get_full_name}}</strong> between
+			<strong>{{first_observation}}</strong>
+			and <strong>{{last_observation}}</strong>.
+		</p>
+	{% endif %}
 	{% if patient %}
 		<table class="calendar">
 			<tr>

@@ -44,23 +44,40 @@ div.drug-label {
     text-align: center;
 }
 div.time-label {
-    font-size: .6em;
+    font-size: .8em;
     font-variant: small-caps;
-    color: #BBB;
+    color: #888;
     margin-left: .2em;
 }
 div.time-cell {
     height: 2em;
 }
 div.observation {
-    padding: .2em 1em;
+    padding: .2em 0em;
 }
 div.observation div {
     text-indent: -10000%;
+    font-size: .5em;
+    height: 16px;
+    float: left;
 }
 .ob-empty {
     background: url('/static/dots/icons/check.jpg') no-repeat scroll top left;
 }
 .ob-partial {
     background: url('/static/dots/icons/exclamation-point.jpg') no-repeat scroll top left;
+}
+.ob-full {
+    background: url('/static/dots/icons/x-mark.png') no-repeat scroll top left;
+}
+
+.ob-direct {
+    background: url('/static/dots/icons/plus.png') no-repeat scroll top left;
+}
+.ob-self {
+    background: url('/static/dots/icons/minus.png') no-repeat scroll top left;
+}
+.date-range-warning {
+    background: url('/static/dots/icons/warning.png') no-repeat scroll top left;
+    text-indent: 24px;
 }

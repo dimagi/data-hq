@@ -3,6 +3,7 @@ from domain.decorators import login_and_domain_required
 from django.template import RequestContext
 
 from collections import defaultdict
+from django.db.models import Max, Min
 
 import datetime
 from models import *
@@ -20,8 +21,9 @@ def index(request, template='dots/index.html'):
     patient_id = request.GET.get('patient', None)
 
     if start_date > end_date:
-        start_date = end_date
-
+         end_date = start_date
+    elif end_date - start_date > datetime.timedelta(365):
+         end_date = start_date + datetime.timedelta(365) 
     dates = []
     date = start_date
     while date <= end_date:
@@ -34,7 +36,13 @@ def index(request, template='dots/index.html'):
         patient = None
 
     observations = Observation.objects.filter(patient__id=patient_id)
-    
+    if observations.count():
+        agg = observations.aggregate(Max('date'), Min('date'))
+        first_observation = agg['date__min']
+        last_observation = agg['date__max']
+        del agg
+        if end_date < first_observation or last_observation < start_date:
+            bad_date_range = True
     total_doses_set = set(observations.values_list('total_doses', flat=True))
 
     try:
@@ -55,7 +63,8 @@ def index(request, template='dots/index.html'):
         obs = observations.filter(date=date)
         for ob in obs:
             grouping['ART' if ob.is_art else 'Non ART'][ob.get_time_label()].append(ob)
-        return [(ak, [(tk, grouping[ak][tk]) for tk in timekeys]) for ak in artkeys]
+        
+        return [(ak, [(tk, sorted(grouping[ak][tk], key=lambda x: x.date)[-1:]) for tk in timekeys]) for ak in artkeys]
     
     start_padding = dates[0].weekday()
     end_padding = 7-dates[-1].weekday() + 1
@@ -64,13 +73,14 @@ def index(request, template='dots/index.html'):
     dates = [(date, group_by_is_art_and_time(date)) for date in dates]
     weeks = [dates[7*n:7*(n+1)] for n in range(len(dates)/7)]
     
-    patients = Patient.objects.all()
+    patients = Patient.objects.filter(observation__in=Observation.objects.all()).distinct()
     
-    context = RequestContext(request, {
+    context = RequestContext(request, locals())
+    {
         'weeks' : weeks,
         'patients' : patients,
         'patient' : patient,
         'start_date': start_date,
         'end_date': end_date,
-    })
+    }
     return render_to_response(template, context)
