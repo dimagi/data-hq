@@ -28,6 +28,11 @@ class AuditEvent(models.Model):
     event_class = models.CharField(max_length=32, db_index=True, editable=False) #allow user defined classes
     description = models.CharField(max_length=160)
     
+    
+    def __unicode__(self):
+        return "[%s] %s" % (self.event_class, self.description)
+    
+    
     @classmethod
     def create_audit(cls, model_class, user):
         """
@@ -35,6 +40,7 @@ class AuditEvent(models.Model):
         """
         audit = cls()
         audit.event_class= cls.__name__        
+        #print cls.__name__
         if isinstance(user, AnonymousUser):
             audit.user = None
             audit.description = "[AnonymousAccess] "
@@ -61,7 +67,7 @@ class ModelActionAudit(AuditEvent):
         audit = cls.create_audit(cls, user)
         audit.description += "Save %s" % (model_class.__name__) 
         audit.content_object = instance        
-        audit.save()                
+        audit.save()   
 setattr(AuditEvent.objects, 'audit_save', ModelActionAudit.audit_save)
     
    
@@ -75,8 +81,9 @@ class NavigationEventAudit(AuditEvent):
     
     view = models.CharField(max_length=255) #the fully qualifid view name
     headers = models.TextField(null=True, blank=True) #the request.META?
-    session = models.ForeignKey(Session)
+    session_key = models.CharField(_('session key'), max_length=40) 
     
+        
     @classmethod
     def audit_view(cls, request, user, view_func):
         '''Creates an instance of a Access log.
@@ -91,7 +98,7 @@ class NavigationEventAudit(AuditEvent):
             audit.ip_address = utils.get_ip(request)
             audit.view = "%s.%s" % (view_func.__module__, view_func.func_name)        
             #audit.headers = unicode(request.META) #it's a bit verbose to go to that extreme, TODO: need to have targeted fields in the META, but due to server differences, it's hard to make it universal.
-            audit.session = Session.objects.get(pk=request.session.session_key)
+            audit.session_key = request.session.session_key
             audit.save()
         except Exception, ex:
             logging.error("NavigationEventAudit.audit_view error: %s" % (ex))     
@@ -107,7 +114,7 @@ class AccessAudit(AuditEvent):
                       )
     access_type = models.CharField(choices=ACCESS_CHOICES, max_length=12)
     ip_address = models.IPAddressField()
-    session = models.ForeignKey(Session)    
+    session_key = models.CharField(_('session key'), max_length=40)    
     
     @classmethod
     def audit_login(cls, request, user, success):
@@ -122,7 +129,7 @@ class AccessAudit(AuditEvent):
             audit.access_type = 'failed'
             audit.description = "Login Failure"
         
-        audit.session = Session.objects.get(pk=request.session.session_key)
+        audit.session_key = request.session.session_key
         audit.save()
     
     
@@ -132,9 +139,9 @@ class AccessAudit(AuditEvent):
         audit = cls.create_audit(cls, user)
         audit.ip_address = utils.get_ip(request)
         
-        audit.description = "Logout"
+        audit.description = "Logout %s" % (user.username)
         audit.access_type = 'logout'        
-        audit.session = Session.objects.get(pk=request.session.session_key)
+        audit.session_key = request.session.session_key
         audit.save()
         
 setattr(AuditEvent.objects, 'audit_login', AccessAudit.audit_login)
