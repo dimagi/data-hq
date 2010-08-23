@@ -33,7 +33,9 @@
 <div id="actions">
 <br>
     <ul>
-    <li><a href="{%url receiver.views.single_submission submission.id %}?get_original">{% trans "view full raw submission" %}</a></li>           
+    {% if submission.raw_post %}
+    <li><a href="{%url receiver.views.single_submission submission.id %}?get_original">{% trans "view full raw submission" %}</a></li>
+    {% endif %}           
     
     {% include "receiver/partials/submission_actions.html" %}
     <li>
