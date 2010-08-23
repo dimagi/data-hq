@@ -1,6 +1,6 @@
 from dots.models import *
 try:
-    from sensitive_dots_data import datas
+    from sensitive_dots_data import data
     def run():
         for row in data:
             row['submission'] = None
