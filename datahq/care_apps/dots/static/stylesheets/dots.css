@@ -60,6 +60,7 @@ div.observation div {
     font-size: .5em;
     height: 16px;
     float: left;
+    min-width: 20px;
 }
 .ob-empty {
     background: url('/static/dots/icons/check.jpg') no-repeat scroll top left;
