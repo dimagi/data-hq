@@ -55,7 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'domain.middleware.DomainMiddleware',
+    'corehq.apps.domain.middleware.DomainMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -67,7 +67,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
-    "corehq.shared_code.context_processors.base_template" # sticks the base template inside all responses
+    "corehq.util.context_processors.base_template" # sticks the base template inside all responses
 ]
 
 
@@ -115,9 +115,9 @@ RECEIVER_ATTACHMENT_PATH="data/attachments"
 RECEIVER_EXPORT_PATH="data"
 
 ####### XFormManager Settings #######
-XFORMMANAGER_SCHEMA_PATH="data/schemas"
-XFORMMANAGER_EXPORT_PATH="data"
-XFORMMANAGER_FORM_TRANSLATE_JAR="lib/form_translate.jar"
+XFORMS_SCHEMA_PATH="data/schemas"
+XFORMS_EXPORT_PATH="data"
+XFORMS_FORM_TRANSLATE_JAR="corehq/lib/form_translate.jar"
 
 ####### Domain settings  #######
 
@@ -158,10 +158,10 @@ EMAIL_USE_TLS = True
 
 
 TABS = [
-    ('hqwebapp.views.dashboard', 'Dashboard'),
-    ('xforms.views.dashboard', 'XForms'),
-    ('receiver.views.show_submits', 'Submissions'),
-    # ('program.views.list_programs', 'Programs')
+    ('corehq.apps.hqwebapp.views.dashboard', 'Dashboard'),
+    ('corehq.apps.xforms.views.dashboard', 'XForms'),
+    ('corehq.apps.receiver.views.show_submits', 'Submissions'),
+    # ('corehq.apps.program.views.list_programs', 'Programs')
 ]
 
 
