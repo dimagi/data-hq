@@ -81,19 +81,19 @@ DEFAULT_APPS = (
 )
 
 HQ_APPS = (
-    'django_granular_permissions',
-    'django_rest_interface',
-    'django_tables',
-    'user_registration',
-    'domain',
-    'receiver',
-    'hqwebapp',
-    'program',
-    'phone',
+    'corehq.lib.django_granular_permissions',
+    'corehq.lib.django_rest_interface',
+    'corehq.lib.django_tables',
+    'corehq.lib.django_user_registration',
+    'corehq.apps.domain',
+    'corehq.apps.receiver',
+    'corehq.apps.hqwebapp',
+    'corehq.apps.program',
+    'corehq.apps.phone',
     # lame: xforms needs to be run last
     # because it resets xmlrouter, which breaks functionality in
     # other code which is dependent on xmlrouter's global initialization
-    'xforms',
+    'corehq.apps.xforms',
 )
 
 TEMPLATE_DIRS = (
