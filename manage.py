@@ -5,8 +5,6 @@ import sys, os
 # add our local apps and shared directory to the path for convenience
 filedir = os.path.dirname(__file__)
 sys.path.append(filedir)
-sys.path.append(os.path.join(filedir,'corehq'))
-sys.path.append(os.path.join(filedir,'corehq','apps'))
 
 try:
     import settings # Assumed to be in the same directory.

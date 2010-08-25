@@ -90,10 +90,10 @@ HQ_APPS = (
     'hqwebapp',
     'program',
     'phone',
-    # lame: xformmanager needs to be run last
+    # lame: xforms needs to be run last
     # because it resets xmlrouter, which breaks functionality in
     # other code which is dependent on xmlrouter's global initialization
-    'xformmanager',
+    'xforms',
 )
 
 TEMPLATE_DIRS = (
@@ -159,7 +159,7 @@ EMAIL_USE_TLS = True
 
 TABS = [
     ('hqwebapp.views.dashboard', 'Dashboard'),
-    ('xformmanager.views.dashboard', 'XForms'),
+    ('xforms.views.dashboard', 'XForms'),
     ('receiver.views.show_submits', 'Submissions'),
     # ('program.views.list_programs', 'Programs')
 ]
