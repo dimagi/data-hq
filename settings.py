@@ -103,7 +103,7 @@ HQ_APPS = (
     
     'care_apps.provider',
     'care_apps.keymaster',
-    'care_apps.pactdata',  #hacky note (dmyung): if you get a too long field error on syncdb, comment this out and syncdb, then comment it back in when you want to run
+    #'care_apps.pactdata',  #hacky note (dmyung): if you get a too long field error on syncdb, comment this out and syncdb, then comment it back in when you want to run
     'care_apps.pactapp',
     'care_apps.pactpatient',
 	'care_apps.dots',
@@ -121,7 +121,7 @@ INSTALLED_APPS = DEFAULT_APPS + HQ_APPS
 # rather than the default 'accounts/profile'
 LOGIN_REDIRECT_URL='/'
 
-
+#Relative paths to the settings.py
 ####### Receiver Settings #######
 RECEIVER_SUBMISSION_PATH="data/submissions"
 RECEIVER_ATTACHMENT_PATH="data/attachments"
@@ -156,7 +156,10 @@ BASE_TEMPLATE="hq-layout.html"
 LOGIN_TEMPLATE="login_and_password/login.html"
 LOGGEDOUT_TEMPLATE="loggedout.html"
 
-
+#logtracker settings variables
+LOGTRACKER_ALERT_EMAILS = []
+LOGTRACKER_LOG_THRESHOLD = 30
+LOGTRACKER_ALERT_THRESHOLD = 40
 
 # email settings: these ones are the custom hq ones
 EMAIL_LOGIN="notifications@dimagi.com"
@@ -197,7 +200,8 @@ AUDIT_VIEWS = [
                'receiver.views.show_dupes',               
                ]
 
-AUDIT_MODEL_SAVE = ['django.contrib.auth.models.User', 
+AUDIT_MODEL_SAVE = [
+                    'django.contrib.auth.models.User', 
                     'xformmanager.models.Metadata',
                     'xformmanager.models.FormDefModel',
                     'receiver.models.Submission',
@@ -206,11 +210,9 @@ AUDIT_MODEL_SAVE = ['django.contrib.auth.models.User',
                     'pactpatient.models.PatientIdentifier',
                     'pactpatient.models.Patient',
                     'provider.models.Provider',
-                    'keymaster.models.DeviceKey',    
-                    
+                    'keymaster.models.DeviceKey',                    
                     'domain.models.Domain',
-                    'domain.models.Membership',
-               
+                    'domain.models.Membership',               
                     ]
 
 
