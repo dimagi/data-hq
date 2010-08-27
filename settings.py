@@ -90,6 +90,7 @@ HQ_APPS = (
     'corehq.apps.hqwebapp',
     'corehq.apps.program',
     'corehq.apps.phone',
+    'corehq.apps.auditor',
     # lame: xforms needs to be run last
     # because it resets xmlrouter, which breaks functionality in
     # other code which is dependent on xmlrouter's global initialization
