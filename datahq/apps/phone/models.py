@@ -84,6 +84,7 @@ def create_phone_and_user(sender, instance, created, **kwargs):
     
     if not created:             return
     if not instance.deviceid:   return
+    if not instance.chw_id:     return
     
     phone = Phone.objects.get_or_create\
                 (device_id = instance.deviceid,
