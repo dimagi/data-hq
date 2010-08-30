@@ -12,10 +12,8 @@ from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.shortcuts import render_to_response
 
-
 from corehq.apps.xforms.models import FormDefModel
 from corehq.apps.domain.decorators import login_and_domain_required
-
 
 from care_apps.pactdata.models import SchemaPactTeNoteProgressNoteNoteReferralsReferral5, SchemaPactPactProgressNote5, SchemaPactEssNoteNoteProgressNoteNoteBwresultsBw5
 import uuid

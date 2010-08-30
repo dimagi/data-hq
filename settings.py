@@ -59,8 +59,8 @@ MIDDLEWARE_CLASSES = (
     'corehq.apps.auditor.middleware.AuditMiddleware',
     'corehq.apps.domain.middleware.DomainMiddleware',
     'corehq.lib.django_digest.middleware.HttpDigestMiddleware',
-    
 )
+
 
 ROOT_URLCONF = 'urls'
 
@@ -86,11 +86,11 @@ DEFAULT_APPS = (
 
 HQ_APPS = (
     'reversion',
-    'corehq.lib.django_digest',
     'django_extensions', 
+    'django_rest_interface',
+    'corehq.lib.django_digest',
     'corehq.lib.django_granular_permissions',
-    'corehq.lib.django_rest_interface',
-    'corehq.apps.django_tables',
+    'corehq.lib.django_tables',
     'corehq.lib.django_user_registration',
     'corehq.apps.domain',
     'corehq.apps.receiver',
@@ -198,7 +198,7 @@ AUDIT_VIEWS = [
                'corehq.apps.receiver.views.delete_submission',
                'corehq.apps.receiver.views.show_submits',
                'corehq.apps.receiver.views.show_dupes',               
-               ]
+]
 
 AUDIT_MODEL_SAVE = [
                     'django.contrib.auth.models.User', 
@@ -213,7 +213,7 @@ AUDIT_MODEL_SAVE = [
                     'care_apps.keymaster.models.DeviceKey',                    
                     'corehq.apps.domain.models.Domain',
                     'corehq.apps.domain.models.Membership',               
-                    ]
+]
 AUDIT_ADMIN_VIEWS = []
 
 TABS = [
