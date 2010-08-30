@@ -13,7 +13,7 @@ from django.db.models import Q
 
 import uuid
 
-from django_digest.decorators import *
+from corehq.lib.django_digest.decorators import *
 from keymaster.models import DeviceKey
 import kzmanage
 

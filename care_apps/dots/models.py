@@ -1,7 +1,7 @@
 from django.db.models import *
-from pactpatient.models import Patient
-from provider.models import Provider
-from receiver.models import Submission
+from care_apps.pactpatient.models import Patient
+from care_apps.provider.models import Provider
+from corehq.apps.receiver.models import Submission
 
 import simplejson
 import time, datetime

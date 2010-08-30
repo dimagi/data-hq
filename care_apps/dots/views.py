@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response
-from domain.decorators import login_and_domain_required
+from corehq.apps.domain.decorators import login_and_domain_required
 from django.template import RequestContext
 
 from collections import defaultdict

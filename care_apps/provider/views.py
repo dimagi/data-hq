@@ -12,11 +12,11 @@ from django.db.models import Q
 
 import uuid
 
-from django_digest.decorators import *
+from corehq.lib.django_digest.decorators import *
 
 from provider.forms import  NewProviderForm
 from provider.models import Provider
-from domain.models import Domain
+from corehq.apps.domain.models import Domain
 from pactpatient.models import Patient, PatientIdentifier, Address, IdentifierType
 
 
