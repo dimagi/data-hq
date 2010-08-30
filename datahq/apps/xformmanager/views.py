@@ -29,6 +29,7 @@ import sys
 import traceback
 import tempfile, csv
 import unicodedata
+from datetime import datetime
 
 @login_and_domain_required
 @transaction.commit_manually
@@ -730,7 +731,7 @@ def export_csv(request, formdef_id):
             current = ElementDefModel.objects.filter(parent__in=current)
     
     
-        return get_zipfile([(temp.name, filename) for (temp, filename) in tempfiles], "%s.zip" % xsd.form_name)
+        return get_zipfile([(temp.name, filename) for (temp, filename) in tempfiles], "%s_%s.zip" % (xsd.form_name, str(datetime.now().date())))
     else:
         return format_csv(root.get_rows(), root.get_column_names(), xsd.form_name)
 
