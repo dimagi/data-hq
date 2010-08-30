@@ -13,7 +13,7 @@ from django.db.models import Q
 from django.shortcuts import render_to_response
 
 
-from xformmanager.models import FormDefModel
+from xforms.models import FormDefModel
 from domain.decorators import login_and_domain_required
 
 

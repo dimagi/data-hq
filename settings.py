@@ -55,7 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'shared_code.threadlocals.ThreadLocals',
+    'corehq.util.threadlocals.ThreadLocals',
     'auditor.middleware.AuditMiddleware',
     'domain.middleware.DomainMiddleware',
     'django_digest.middleware.HttpDigestMiddleware',
@@ -71,7 +71,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
-    "corehq.shared_code.context_processors.base_template" # sticks the base template inside all responses
+    "corehq.util.context_processors.base_template" # sticks the base template inside all responses
 ]
 
 
@@ -86,15 +86,15 @@ DEFAULT_APPS = (
 
 HQ_APPS = (
     'reversion',
-    'django_digest',
     'django_extensions', 
-    'django_granular_permissions',
     'django_rest_interface',
-    'corehq.apps.django_tables',
-    'corehq.apps.user_registration',
+    'corehq.lib.django_digest',
+    'corehq.lib.django_granular_permissions',
+    'corehq.lib.django_tables',
+    'corehq.lib.django_user_registration',
     'corehq.apps.domain',
     'corehq.apps.receiver',
-    'corehq.apps.xformmanager',
+    'corehq.apps.xforms',
     'corehq.apps.hqwebapp',
     'corehq.apps.program',
     'corehq.apps.phone',
@@ -128,9 +128,9 @@ RECEIVER_ATTACHMENT_PATH="data/attachments"
 RECEIVER_EXPORT_PATH="data"
 
 ####### XFormManager Settings #######
-XFORMMANAGER_SCHEMA_PATH="data/schemas"
-XFORMMANAGER_EXPORT_PATH="data/exports"
-XFORMMANAGER_FORM_TRANSLATE_JAR="lib/form_translate.jar"
+XFORMS_SCHEMA_PATH="data/schemas"
+XFORMS_EXPORT_PATH="data/exports"
+XFORMS_FORM_TRANSLATE_JAR="lib/form_translate.jar"
 
 #####Encryption Keys######
 KEYSTORE_PATH='data/keystore'
@@ -177,19 +177,19 @@ EMAIL_HOST_PASSWORD = "alpha321"
 EMAIL_USE_TLS = True
 
 AUDIT_VIEWS = [
-               'xformmanager.views.dashboard',
-               'xformmanager.views.remove_xform',
-               'xformmanager.views.new_form_data_group',
-               'xformmanager.views.submit_data',
-               'xformmanager.views.single_xform',
-               'xformmanager.views.get_xform',
-               'xformmanager.views.export_xml',
-               'xformmanager.views.plain_data',
-               'xformmanager.views.data',
-               'xformmanager.views.export_csv',
-               'xformmanager.views.readable_xform',
-               'xformmanager.views.get_csv_from_form',
-               'xformmanager.views.data',               
+               'xforms.views.dashboard',
+               'xforms.views.remove_xform',
+               'xforms.views.new_form_data_group',
+               'xforms.views.submit_data',
+               'xforms.views.single_xform',
+               'xforms.views.get_xform',
+               'xforms.views.export_xml',
+               'xforms.views.plain_data',
+               'xforms.views.data',
+               'xforms.views.export_csv',
+               'xforms.views.readable_xform',
+               'xforms.views.get_csv_from_form',
+               'xforms.views.data',               
                'receiver.views.single_attachment',
                'receiver.views.single_submission',
                'receiver.views.domain_submit',
@@ -202,8 +202,8 @@ AUDIT_VIEWS = [
 
 AUDIT_MODEL_SAVE = [
                     'django.contrib.auth.models.User', 
-                    'xformmanager.models.Metadata',
-                    'xformmanager.models.FormDefModel',
+                    'xforms.models.Metadata',
+                    'xforms.models.FormDefModel',
                     'receiver.models.Submission',
                     'pactpatient.models.IdentifierType',
                     'pactpatient.models.Address',
@@ -217,9 +217,9 @@ AUDIT_MODEL_SAVE = [
 
 
 TABS = [
-    ('hqwebapp.views.dashboard', 'Dashboard'),
-    ('xformmanager.views.dashboard', 'XForms'),
-    ('receiver.views.show_submits', 'Submissions'),
+    ('corehq.apps.hqwebapp.views.dashboard', 'Dashboard'),
+    ('corehq.apps.xforms.views.dashboard', 'XForms'),
+    ('corehq.apps.receiver.views.show_submits', 'Submissions'),
     ('pactapp.views.progress_notes', 'Progress Notes'),
     # ('program.views.list_programs', 'Programs')
 	('dots.views.index', 'DOTS'),

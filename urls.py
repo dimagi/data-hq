@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 import os
 
-from corehq.shared_code.modules import try_import
+from corehq.util.modules import try_import
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -27,12 +27,12 @@ urlpatterns = patterns('',
     (r'', include('hqwebapp.urls')),
     (r'', include('domain.urls')),
     (r'', include('receiver.urls')),
-    (r'', include('xformmanager.urls')),
+    (r'', include('xforms.urls')),
     (r'', include('program.urls')),
     (r'', include('provider.urls')),
     (r'', include('keymaster.urls')),
     (r'', include('pactapp.urls')),
-    (r'user_registration', include("user_registration.urls")),
+    (r'user_registration', include("django_user_registration.urls")),
     (r'dots', include('dots.urls')),
 )
 

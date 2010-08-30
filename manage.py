@@ -6,6 +6,8 @@ import sys, os
 filedir = os.path.dirname(__file__)
 sys.path.append(os.path.join(filedir,'corehq'))
 sys.path.append(os.path.join(filedir,'corehq','apps'))
+sys.path.append(os.path.join(filedir,'corehq','lib'))
+sys.path.append(os.path.join(filedir,'corehq','util'))
 sys.path.append(os.path.join(filedir,'care_apps'))
 
 try:
