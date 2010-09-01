@@ -25,5 +25,5 @@ class Provider(models.Model):
         return "%s %s" % (self.user.first_name, self.user.last_name)
     
     
-    def save(self):
+    def save(self, force_insert=False, force_update=False, using=None):
         super(Provider, self).save()

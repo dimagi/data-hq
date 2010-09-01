@@ -1,5 +1,5 @@
 import hashlib
-import logging.handlers
+import logging
 
 
 class EmailMsgFormatter(logging.Formatter):

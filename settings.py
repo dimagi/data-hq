@@ -56,11 +56,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'corehq.util.threadlocals.ThreadLocals',
-    'auditor.middleware.AuditMiddleware',
-    'domain.middleware.DomainMiddleware',
-    'django_digest.middleware.HttpDigestMiddleware',
-    
+    'corehq.apps.auditor.middleware.AuditMiddleware',
+    'corehq.apps.domain.middleware.DomainMiddleware',
+    'corehq.lib.django_digest.middleware.HttpDigestMiddleware',
 )
+
 
 ROOT_URLCONF = 'urls'
 
@@ -87,8 +87,8 @@ DEFAULT_APPS = (
 HQ_APPS = (
     'reversion',
     'django_extensions', 
-    'django_rest_interface',
-    'django_digest',
+    'corehq.lib.django_rest_interface',
+    'corehq.lib.django_digest',
     'corehq.lib.django_granular_permissions',
     'corehq.lib.django_tables',
     'corehq.lib.django_user_registration',
@@ -127,7 +127,7 @@ RECEIVER_SUBMISSION_PATH="data/submissions"
 RECEIVER_ATTACHMENT_PATH="data/attachments"
 RECEIVER_EXPORT_PATH="data"
 
-####### XFormManager Settings #######
+####### XForms Settings #######
 XFORMS_SCHEMA_PATH="data/schemas"
 XFORMS_EXPORT_PATH="data/exports"
 XFORMS_FORM_TRANSLATE_JAR="lib/form_translate.jar"
@@ -177,52 +177,52 @@ EMAIL_HOST_PASSWORD = "alpha321"
 EMAIL_USE_TLS = True
 
 AUDIT_VIEWS = [
-               'xforms.views.dashboard',
-               'xforms.views.remove_xform',
-               'xforms.views.new_form_data_group',
-               'xforms.views.submit_data',
-               'xforms.views.single_xform',
-               'xforms.views.get_xform',
-               'xforms.views.export_xml',
-               'xforms.views.plain_data',
-               'xforms.views.data',
-               'xforms.views.export_csv',
-               'xforms.views.readable_xform',
-               'xforms.views.get_csv_from_form',
-               'xforms.views.data',               
-               'receiver.views.single_attachment',
-               'receiver.views.single_submission',
-               'receiver.views.domain_submit',
-               'receiver.views.domain_resubmit',
-               'receiver.views.orphaned_data',
-               'receiver.views.delete_submission',
-               'receiver.views.show_submits',
-               'receiver.views.show_dupes',               
-               ]
+               'corehq.apps.xforms.views.dashboard',
+               'corehq.apps.xforms.views.remove_xform',
+               'corehq.apps.xforms.views.new_form_data_group',
+               'corehq.apps.xforms.views.submit_data',
+               'corehq.apps.xforms.views.single_xform',
+               'corehq.apps.xforms.views.get_xform',
+               'corehq.apps.xforms.views.export_xml',
+               'corehq.apps.xforms.views.plain_data',
+               'corehq.apps.xforms.views.data',
+               'corehq.apps.xforms.views.export_csv',
+               'corehq.apps.xforms.views.readable_xform',
+               'corehq.apps.xforms.views.get_csv_from_form',
+               'corehq.apps.xforms.views.data',               
+               'corehq.apps.receiver.views.single_attachment',
+               'corehq.apps.receiver.views.single_submission',
+               'corehq.apps.receiver.views.domain_submit',
+               'corehq.apps.receiver.views.domain_resubmit',
+               'corehq.apps.receiver.views.orphaned_data',
+               'corehq.apps.receiver.views.delete_submission',
+               'corehq.apps.receiver.views.show_submits',
+               'corehq.apps.receiver.views.show_dupes',               
+]
 
 AUDIT_MODEL_SAVE = [
                     'django.contrib.auth.models.User', 
-                    'xforms.models.Metadata',
-                    'xforms.models.FormDefModel',
-                    'receiver.models.Submission',
-                    'pactpatient.models.IdentifierType',
-                    'pactpatient.models.Address',
-                    'pactpatient.models.PatientIdentifier',
-                    'pactpatient.models.Patient',
-                    'provider.models.Provider',
-                    'keymaster.models.DeviceKey',                    
-                    'domain.models.Domain',
-                    'domain.models.Membership',               
-                    ]
-
+                    'corehq.apps.xforms.models.Metadata',
+                    'corehq.apps.xforms.models.FormDefModel',
+                    'corehq.apps.receiver.models.Submission',
+                    'care_apps.pactpatient.models.IdentifierType',
+                    'care_apps.pactpatient.models.Address',
+                    'care_apps.pactpatient.models.PatientIdentifier',
+                    'care_apps.pactpatient.models.Patient',
+                    'care_apps.provider.models.Provider',
+                    'care_apps.keymaster.models.DeviceKey',
+                    'corehq.apps.domain.models.Domain',
+                    'corehq.apps.domain.models.Membership',               
+]
+AUDIT_ADMIN_VIEWS = []
 
 TABS = [
     ('corehq.apps.hqwebapp.views.dashboard', 'Dashboard'),
     ('corehq.apps.xforms.views.dashboard', 'XForms'),
     ('corehq.apps.receiver.views.show_submits', 'Submissions'),
-    ('pactapp.views.progress_notes', 'Progress Notes'),
-    # ('program.views.list_programs', 'Programs')
-	('dots.views.index', 'DOTS'),
+    ('care_apps.pactapp.views.progress_notes', 'Progress Notes'),
+    # ('corehq.apps.program.views.list_programs', 'Programs')
+	('care_apps.dots.views.index', 'DOTS'),
 ]
 
 DIGEST_ENFORCE_NONCE_COUNT = False

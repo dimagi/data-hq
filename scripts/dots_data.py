@@ -1,6 +1,6 @@
-from dots.models import *
+from care_apps.dots.models import *
 from BeautifulSoup import BeautifulStoneSoup
-import sys, glob
+import glob
 import settings
 
 def data_from_stream(stream):
@@ -12,7 +12,6 @@ def data_from_stream(stream):
     return username, patient_id, dots
 
 def run():
-    data = {}
     path = settings.RECEIVER_ATTACHMENT_PATH
     filenames = glob.glob(path+'/*.xml')
     for filename in filenames:

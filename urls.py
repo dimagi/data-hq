@@ -24,16 +24,16 @@ urlpatterns = patterns('',
     # we just include the urls at the root.
     # The correct solution is likely to break apart urls or harmonize
     # apps so they all have proper prefixing.
-    (r'', include('hqwebapp.urls')),
-    (r'', include('domain.urls')),
-    (r'', include('receiver.urls')),
-    (r'', include('xforms.urls')),
-    (r'', include('program.urls')),
-    (r'', include('provider.urls')),
-    (r'', include('keymaster.urls')),
-    (r'', include('pactapp.urls')),
-    (r'user_registration', include("django_user_registration.urls")),
-    (r'dots', include('dots.urls')),
+    (r'', include('corehq.apps.hqwebapp.urls')),
+    (r'', include('corehq.apps.domain.urls')),
+    (r'', include('corehq.apps.receiver.urls')),
+    (r'', include('corehq.apps.xforms.urls')),
+    (r'', include('corehq.apps.program.urls')),
+    (r'', include('care_apps.provider.urls')),
+    (r'', include('care_apps.keymaster.urls')),
+    (r'', include('care_apps.pactapp.urls')),
+    (r'user_registration', include("corehq.lib.django_user_registration.urls")),
+    (r'dots', include('care_apps.dots.urls')),
 )
 
 # magic static media server (idea + implementation lifted from rapidsms)

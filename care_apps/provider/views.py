@@ -1,23 +1,18 @@
-from datetime import datetime
 import logging
 
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from django.http import HttpResponse,Http404, HttpResponseRedirect
-from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
-from django.db.models import Q
+from django.http import   HttpResponseRedirect
 
 import uuid
 
-from django_digest.decorators import *
+from corehq.lib.django_digest.decorators import *
 
-from provider.forms import  NewProviderForm
-from provider.models import Provider
-from domain.models import Domain
-from pactpatient.models import Patient, PatientIdentifier, Address, IdentifierType
+from care_apps.provider.forms import  NewProviderForm
+from care_apps.provider.models import Provider
+from corehq.apps.domain.models import Domain
+from care_apps.pactpatient.models import Patient, IdentifierType
 
 
 
@@ -143,8 +138,7 @@ def case_list(request):
     
 @login_required    
 def new_provider(request, template_name="provider/edit_provider.html"):    
-    context = {}    
-    context['form'] = NewProviderForm()
+    context = {'form': NewProviderForm()}
     if request.method == 'POST':
         form = NewProviderForm(data=request.POST)
         if form.is_valid():

@@ -1,6 +1,5 @@
 import os
 import sys
-import cherrypy
 from cherrypy import wsgiserver
 import logging
 
