@@ -66,6 +66,8 @@ def new_submission(metadata, checksum, domain=None, is_resubmission=False):
             new_submit.submit_ip = metadata['HTTP_X_FORWARDED_FOR']
         elif metadata.has_key('REMOTE_HOST') and len(metadata['REMOTE_HOST'])>0:
             new_submit.submit_ip = metadata['REMOTE_HOST']
+        elif metadata.has_key('REMOTE_ADDR') and len(metadata['REMOTE_ADDR'])>0:
+            new_submit.submit_ip = metadata['REMOTE_ADDR']
         else:
             new_submit.submit_ip = '127.0.0.1'
     
