@@ -157,6 +157,12 @@ EMAIL_HOST_USER = "notifications@dimagi.com"
 EMAIL_HOST_PASSWORD = "alpha321"
 EMAIL_USE_TLS = True
 
+AUDIT_VIEWS = []
+
+AUDIT_MODEL_SAVE = [
+    'django.contrib.auth.models.User',           
+]
+AUDIT_ADMIN_VIEWS = []
 
 TABS = [
     ('corehq.apps.hqwebapp.views.dashboard', 'Dashboard'),
