@@ -88,7 +88,7 @@ HQ_APPS = (
     'reversion',
     'django_extensions', 
     'django_rest_interface',
-    'corehq.lib.django_digest',
+    'django_digest',
     'corehq.lib.django_granular_permissions',
     'corehq.lib.django_tables',
     'corehq.lib.django_user_registration',
