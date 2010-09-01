@@ -7,7 +7,7 @@ from django.http import   HttpResponseRedirect
 
 import uuid
 
-from corehq.lib.django_digest.decorators import *
+from django_digest.decorators import *
 
 from care_apps.provider.forms import  NewProviderForm
 from care_apps.provider.models import Provider

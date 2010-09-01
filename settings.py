@@ -58,7 +58,7 @@ MIDDLEWARE_CLASSES = (
     'corehq.util.threadlocals.ThreadLocals',
     'corehq.apps.auditor.middleware.AuditMiddleware',
     'corehq.apps.domain.middleware.DomainMiddleware',
-    'corehq.lib.django_digest.middleware.HttpDigestMiddleware',
+    'django_digest.middleware.HttpDigestMiddleware',
 )
 
 
@@ -86,9 +86,9 @@ DEFAULT_APPS = (
 
 HQ_APPS = (
     'reversion',
-    'django_extensions', 
+    #'django_extensions',
     'corehq.lib.django_rest_interface',
-    'corehq.lib.django_digest',
+    'django_digest',
     'corehq.lib.django_granular_permissions',
     'corehq.lib.django_tables',
     'corehq.lib.django_user_registration',

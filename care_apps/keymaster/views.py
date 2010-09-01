@@ -2,7 +2,7 @@ import logging
 import os
 import settings
 
-from corehq.lib.django_digest.decorators import *
+from django_digest.decorators import *
 from keymaster.models import DeviceKey
 import kzmanage
 
