@@ -1,17 +1,6 @@
-from datetime import datetime
 import logging
 import os
 import settings
-
-from django.contrib.auth.decorators import login_required
-from django.template import RequestContext
-from django.http import HttpResponse,Http404, HttpResponseRedirect
-from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
-from django.db.models import Q
-
-import uuid
 
 from corehq.lib.django_digest.decorators import *
 from keymaster.models import DeviceKey

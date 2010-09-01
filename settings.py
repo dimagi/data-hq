@@ -86,8 +86,8 @@ DEFAULT_APPS = (
 
 HQ_APPS = (
     'reversion',
-    'django_extensions', 
-    'django_rest_interface',
+    #'django_extensions', 
+    'corehq.lib.django_rest_interface',
     'corehq.lib.django_digest',
     'corehq.lib.django_granular_permissions',
     'corehq.lib.django_tables',
@@ -210,7 +210,7 @@ AUDIT_MODEL_SAVE = [
                     'care_apps.pactpatient.models.PatientIdentifier',
                     'care_apps.pactpatient.models.Patient',
                     'care_apps.provider.models.Provider',
-                    'care_apps.keymaster.models.DeviceKey',                    
+                    'care_apps.keymaster.models.DeviceKey',
                     'corehq.apps.domain.models.Domain',
                     'corehq.apps.domain.models.Membership',               
 ]

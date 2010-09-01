@@ -1,13 +1,9 @@
 #!/usr/bin/env python
 # vim: ai ts=4 sts=4 et sw=4
 
-from datetime import datetime, timedelta
 from django import forms
 from django.contrib.auth.models import User
-from django.forms.util import ErrorList, ValidationError
-from datetime import datetime
-from django.forms import widgets
-import hashlib
+from django.forms.util import  ValidationError
 
 from provider.models import Provider
 

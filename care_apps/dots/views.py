@@ -2,10 +2,6 @@ from django.shortcuts import render_to_response
 from corehq.apps.domain.decorators import login_and_domain_required
 from django.template import RequestContext
 
-from collections import defaultdict
-from django.db.models import Max, Min
-
-import datetime
 from models import *
 
 def _parse_date(string):

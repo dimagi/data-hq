@@ -23,7 +23,7 @@ class IdentifierType(models.Model):
     shortname = models.CharField(max_length=32)
     
     regex = models.CharField(max_length=128, blank=True, null=True)
-    def save(self):
+    def save(self, force_insert=False, force_update=False, using=None):
         super(IdentifierType, self).save()
 
 class Address(models.Model):
@@ -41,7 +41,7 @@ class PatientIdentifier(models.Model):
     id_value = models.CharField(max_length=128)    
     
     #todo:  put an update procedure that points all the patient instances to the actual root patient
-    def save(self):
+    def save(self, force_insert=False, force_update=False, using=None):
         super(PatientIdentifier, self).save()
 
 
@@ -80,14 +80,14 @@ class Patient(models.Model):
     def __unicode__(self):
         return "%s %s" % (self.user.first_name, self.user.last_name)
     
-    def save(self):
+    def save(self, force_insert=False, force_update=False, using=None):
         super(Patient, self).save()
     
     def get_root_patient(self):
         if self.is_primary:
             return self
         else:
-            if self.root_patient == None:
+            if self.root_patient is None:
                 raise Exception ("Error, this patient is designated as not a primary, but the root pointer is null")
             return self.root_patient
         
