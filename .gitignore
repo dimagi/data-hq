@@ -2,3 +2,4 @@
 localsettings.py
 *.py~
 data/*
+.idea/
