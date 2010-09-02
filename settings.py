@@ -86,6 +86,7 @@ DEFAULT_APPS = (
 
 HQ_APPS = (
     'reversion',
+    
     #'django_extensions',
     'corehq.lib.django_rest_interface',
     'django_digest',
@@ -94,7 +95,6 @@ HQ_APPS = (
     'corehq.lib.django_user_registration',
     'corehq.apps.domain',
     'corehq.apps.receiver',
-    'corehq.apps.xforms',
     'corehq.apps.hqwebapp',
     'corehq.apps.program',
     'corehq.apps.phone',
@@ -107,6 +107,7 @@ HQ_APPS = (
     'care_apps.pactapp',
     'care_apps.pactpatient',
 	'care_apps.dots',
+    'corehq.apps.xforms',
 )
 
 TEMPLATE_DIRS = (
@@ -177,19 +178,19 @@ EMAIL_HOST_PASSWORD = "alpha321"
 EMAIL_USE_TLS = True
 
 AUDIT_VIEWS = [
-               'corehq.apps.xforms.views.dashboard',
-               'corehq.apps.xforms.views.remove_xform',
-               'corehq.apps.xforms.views.new_form_data_group',
-               'corehq.apps.xforms.views.submit_data',
-               'corehq.apps.xforms.views.single_xform',
-               'corehq.apps.xforms.views.get_xform',
-               'corehq.apps.xforms.views.export_xml',
-               'corehq.apps.xforms.views.plain_data',
-               'corehq.apps.xforms.views.data',
-               'corehq.apps.xforms.views.export_csv',
-               'corehq.apps.xforms.views.readable_xform',
-               'corehq.apps.xforms.views.get_csv_from_form',
-               'corehq.apps.xforms.views.data',               
+#               'corehq.apps.xforms.views.dashboard',
+#               'corehq.apps.xforms.views.remove_xform',
+#               'corehq.apps.xforms.views.new_form_data_group',
+#               'corehq.apps.xforms.views.submit_data',
+#               'corehq.apps.xforms.views.single_xform',
+#               'corehq.apps.xforms.views.get_xform',
+#               'corehq.apps.xforms.views.export_xml',
+#               'corehq.apps.xforms.views.plain_data',
+#               'corehq.apps.xforms.views.data',
+#               'corehq.apps.xforms.views.export_csv',
+#               'corehq.apps.xforms.views.readable_xform',
+#               'corehq.apps.xforms.views.get_csv_from_form',
+#               'corehq.apps.xforms.views.data',               
                'corehq.apps.receiver.views.single_attachment',
                'corehq.apps.receiver.views.single_submission',
                'corehq.apps.receiver.views.domain_submit',
@@ -229,6 +230,11 @@ DIGEST_ENFORCE_NONCE_COUNT = False
 
 # import local settings if we find them
 try:
+    #try to see if there's an environmental variable set for local_settings
+    import sys, os
+    if os.environ.has_key('LOCALSETTINGS'):
+        localpath = os.path.dirname(os.environ['LOCALSETTINGS'])
+        sys.path.insert(0, localpath)
     from localsettings import *
 except ImportError:
     pass
