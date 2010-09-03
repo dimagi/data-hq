@@ -32,7 +32,7 @@ urlpatterns = patterns('',
     (r'', include('care_apps.provider.urls')),
     (r'', include('care_apps.keymaster.urls')),
     (r'', include('care_apps.pactapp.urls')),
-    (r'user_registration', include("corehq.lib.django_user_registration.urls")),
+    (r'user_registration', include("django_user_registration.urls")),
     (r'dots', include('care_apps.dots.urls')),
 )
 

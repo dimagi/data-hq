@@ -1,0 +1,2 @@
+Submodules that are to be eventually libraries are added here.
+the PYTHONPATH should be updated to reference the specific directories of the submodule tree you particularly need to reference as they are to be referenced.

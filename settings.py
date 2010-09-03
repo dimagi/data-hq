@@ -88,11 +88,11 @@ HQ_APPS = (
     'reversion',
     
     #'django_extensions',
-    'corehq.lib.django_rest_interface',
+    'django_rest_interface',
     'django_digest',
-    'corehq.lib.django_granular_permissions',
-    'corehq.lib.django_tables',
-    'corehq.lib.django_user_registration',
+    'django_granular_permissions',
+    'django_tables',
+    'django_user_registration',
     'corehq.apps.domain',
     'corehq.apps.receiver',
     'corehq.apps.hqwebapp',
@@ -178,19 +178,19 @@ EMAIL_HOST_PASSWORD = "alpha321"
 EMAIL_USE_TLS = True
 
 AUDIT_VIEWS = [
-#               'corehq.apps.xforms.views.dashboard',
-#               'corehq.apps.xforms.views.remove_xform',
-#               'corehq.apps.xforms.views.new_form_data_group',
-#               'corehq.apps.xforms.views.submit_data',
-#               'corehq.apps.xforms.views.single_xform',
-#               'corehq.apps.xforms.views.get_xform',
-#               'corehq.apps.xforms.views.export_xml',
-#               'corehq.apps.xforms.views.plain_data',
-#               'corehq.apps.xforms.views.data',
-#               'corehq.apps.xforms.views.export_csv',
-#               'corehq.apps.xforms.views.readable_xform',
-#               'corehq.apps.xforms.views.get_csv_from_form',
-#               'corehq.apps.xforms.views.data',               
+               'corehq.apps.xforms.views.dashboard',
+               'corehq.apps.xforms.views.remove_xform',
+               'corehq.apps.xforms.views.new_form_data_group',
+               'corehq.apps.xforms.views.submit_data',
+               'corehq.apps.xforms.views.single_xform',
+               'corehq.apps.xforms.views.get_xform',
+               'corehq.apps.xforms.views.export_xml',
+               'corehq.apps.xforms.views.plain_data',
+               'corehq.apps.xforms.views.data',
+               'corehq.apps.xforms.views.export_csv',
+               'corehq.apps.xforms.views.readable_xform',
+               'corehq.apps.xforms.views.get_csv_from_form',
+               'corehq.apps.xforms.views.data',
                'corehq.apps.receiver.views.single_attachment',
                'corehq.apps.receiver.views.single_submission',
                'corehq.apps.receiver.views.domain_submit',
@@ -202,18 +202,20 @@ AUDIT_VIEWS = [
 ]
 
 AUDIT_MODEL_SAVE = [
-                    'django.contrib.auth.models.User', 
-                    'corehq.apps.xforms.models.Metadata',
-                    'corehq.apps.xforms.models.FormDefModel',
-                    'corehq.apps.receiver.models.Submission',
-                    'care_apps.pactpatient.models.IdentifierType',
-                    'care_apps.pactpatient.models.Address',
-                    'care_apps.pactpatient.models.PatientIdentifier',
-                    'care_apps.pactpatient.models.Patient',
-                    'care_apps.provider.models.Provider',
-                    'care_apps.keymaster.models.DeviceKey',
-                    'corehq.apps.domain.models.Domain',
-                    'corehq.apps.domain.models.Membership',               
+                    #'django.contrib.auth.models.User',
+                    #'corehq.apps.xforms.models.Metadata',
+                    #'corehq.apps.xforms.models.FormDefModel',
+                    #'corehq.apps.receiver.models.Submission',
+                    #'corehq.apps.domain.models.Domain',
+                    #'corehq.apps.domain.models.Membership',
+#                    'care_apps.pactpatient.models.IdentifierType',
+#                    'care_apps.pactpatient.models.Address',
+#                    'care_apps.pactpatient.models.PatientIdentifier',
+#                    'care_apps.pactpatient.models.Patient',
+#                    'care_apps.provider.models.Provider',
+#                    'care_apps.keymaster.models.DeviceKey',
+
+
 ]
 AUDIT_ADMIN_VIEWS = []
 
@@ -222,7 +224,6 @@ TABS = [
     ('corehq.apps.xforms.views.dashboard', 'XForms'),
     ('corehq.apps.receiver.views.show_submits', 'Submissions'),
     ('care_apps.pactapp.views.progress_notes', 'Progress Notes'),
-    # ('corehq.apps.program.views.list_programs', 'Programs')
 	('care_apps.dots.views.index', 'DOTS'),
 ]
 
