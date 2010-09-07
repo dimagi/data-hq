@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     (r'', include('corehq.apps.xforms.urls')),
     (r'', include('corehq.apps.program.urls')),
     (r'', include('corehq.apps.phone.urls')),
-    (r'user_registration', include("corehq.lib.django_user_registration.urls"))
+    (r'user_registration', include("django_user_registration.urls"))
 )
 
 # magic static media server (idea + implementation lifted from rapidsms)

@@ -1,4 +1,5 @@
 # Django settings for datahq project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -81,10 +82,10 @@ DEFAULT_APPS = (
 )
 
 HQ_APPS = (
-    'corehq.lib.django_granular_permissions',
-    'corehq.lib.django_rest_interface',
-    'corehq.lib.django_tables',
-    'corehq.lib.django_user_registration',
+    'django_granular_permissions',
+    'django_rest_interface',
+    'django_tables',
+    'django_user_registration',
     'corehq.apps.domain',
     'corehq.apps.receiver',
     'corehq.apps.hqwebapp',
@@ -113,15 +114,16 @@ INSTALLED_APPS = DEFAULT_APPS + HQ_APPS
 LOGIN_REDIRECT_URL='/'
 
 
+DATA_PATH="data"
 ####### Receiver Settings #######
-RECEIVER_SUBMISSION_PATH="data/submissions"
-RECEIVER_ATTACHMENT_PATH="data/attachments"
-RECEIVER_EXPORT_PATH="data"
+RECEIVER_SUBMISSION_PATH=os.path.join(DATA_PATH,"submissions")
+RECEIVER_ATTACHMENT_PATH=os.path.join(DATA_PATH,"attachments")
+RECEIVER_EXPORT_PATH=DATA_PATH
 
 ####### XFormManager Settings #######
-XFORMS_SCHEMA_PATH="data/schemas"
-XFORMS_EXPORT_PATH="data"
-XFORMS_FORM_TRANSLATE_JAR="corehq/lib/form_translate.jar"
+XFORMS_SCHEMA_PATH=os.path.join(DATA_PATH,"schemas")
+XFORMS_EXPORT_PATH=DATA_PATH
+XFORMS_FORM_TRANSLATE_JAR="submodules/core-hq-src/lib/form_translate.jar"
 
 ####### ReleaseManager settings  #######
 RELEASE_FILE_PATH="data/release"
