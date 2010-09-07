@@ -91,6 +91,9 @@ HQ_APPS = (
     'corehq.apps.program',
     'corehq.apps.phone',
     'corehq.apps.auditor',
+    'corehq.apps.requestlogger',
+    'corehq.apps.releasemanager',
+    'corehq.apps.logtracker',
     # lame: xforms needs to be run last
     # because it resets xmlrouter, which breaks functionality in
     # other code which is dependent on xmlrouter's global initialization
@@ -120,6 +123,9 @@ XFORMS_SCHEMA_PATH="data/schemas"
 XFORMS_EXPORT_PATH="data"
 XFORMS_FORM_TRANSLATE_JAR="corehq/lib/form_translate.jar"
 
+####### ReleaseManager settings  #######
+RELEASE_FILE_PATH="data/release"
+
 ####### Domain settings  #######
 
 DOMAIN_MAX_REGISTRATION_REQUESTS_PER_DAY=99
@@ -141,6 +147,10 @@ LOGIN_TEMPLATE="login_and_password/login.html"
 LOGGEDOUT_TEMPLATE="loggedout.html"
 
 
+#logtracker settings variables
+LOGTRACKER_ALERT_EMAILS = []
+LOGTRACKER_LOG_THRESHOLD = 30
+LOGTRACKER_ALERT_THRESHOLD = 40
 
 # email settings: these ones are the custom hq ones
 EMAIL_LOGIN="notifications@dimagi.com"
