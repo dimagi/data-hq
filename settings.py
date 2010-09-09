@@ -194,3 +194,24 @@ try:
     from localsettings import *
 except ImportError:
     pass
+
+DJANGO_LOG_FILE = "datahq.django.log"
+LOG_SIZE = 1000000
+LOG_LEVEL   = "DEBUG"
+LOG_FILE    = "datahq.log"
+LOG_FORMAT  = "[%(name)s]: %(message)s"
+LOG_BACKUPS = 256 # number of logs to keep
+
+
+####### Receiver Settings #######
+ROOT_DATA_PATH = "data"
+RECEIVER_SUBMISSION_PATH=ROOT_DATA_PATH + "/submissions"
+RECEIVER_ATTACHMENT_PATH=ROOT_DATA_PATH + "/attachments"
+RECEIVER_EXPORT_PATH=ROOT_DATA_PATH
+
+####### XFormManager Settings #######
+XFORMMANAGER_SCHEMA_PATH=ROOT_DATA_PATH + "/schemas"
+XFORMMANAGER_EXPORT_PATH=ROOT_DATA_PATH
+XFORMMANAGER_FORM_TRANSLATE_JAR="submodules/core-hq-src/lib/form_translate.jar"
+
+
