@@ -78,12 +78,12 @@ DEFAULT_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    
+    'south',
 )
 
 HQ_APPS = (
-    'django_granular_permissions',
     'django_rest_interface',
+    'django_granular_permissions',
     'django_tables',
     'django_user_registration',
     'corehq.apps.domain',
@@ -91,10 +91,10 @@ HQ_APPS = (
     'corehq.apps.hqwebapp',
     'corehq.apps.program',
     'corehq.apps.phone',
-    'corehq.apps.auditor',
-    'corehq.apps.requestlogger',
-    'corehq.apps.releasemanager',
     'corehq.apps.logtracker',
+    'corehq.apps.auditor',
+    'corehq.apps.releasemanager',
+    'corehq.apps.requestlogger',
     # lame: xforms needs to be run last
     # because it resets xmlrouter, which breaks functionality in
     # other code which is dependent on xmlrouter's global initialization
