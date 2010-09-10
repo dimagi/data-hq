@@ -78,7 +78,6 @@ DEFAULT_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'south',
 )
 
 HQ_APPS = (
@@ -86,19 +85,20 @@ HQ_APPS = (
     'django_granular_permissions',
     'django_tables',
     'django_user_registration',
+    #'corehq.apps.auditor',
     'corehq.apps.domain',
     'corehq.apps.receiver',
     'corehq.apps.hqwebapp',
     'corehq.apps.program',
     'corehq.apps.phone',
     'corehq.apps.logtracker',
-    'corehq.apps.auditor',
     'corehq.apps.releasemanager',
     'corehq.apps.requestlogger',
     # lame: xforms needs to be run last
     # because it resets xmlrouter, which breaks functionality in
     # other code which is dependent on xmlrouter's global initialization
     'corehq.apps.xforms',
+    'south',
 )
 
 TEMPLATE_DIRS = (
@@ -214,4 +214,7 @@ XFORMMANAGER_SCHEMA_PATH=ROOT_DATA_PATH + "/schemas"
 XFORMMANAGER_EXPORT_PATH=ROOT_DATA_PATH
 XFORMMANAGER_FORM_TRANSLATE_JAR="submodules/core-hq-src/lib/form_translate.jar"
 
+####### South Settings #######
+#SKIP_SOUTH_TESTS=True
+#SOUTH_TESTS_MIGRATE=False
 
