@@ -1,4 +1,3 @@
-# Django settings for datahq project.
 import os
 
 DEBUG = True
@@ -81,6 +80,7 @@ DEFAULT_APPS = (
 )
 
 HQ_APPS = (
+    'django_extensions',
     'django_rest_interface',
     'django_granular_permissions',
     'django_tables',
