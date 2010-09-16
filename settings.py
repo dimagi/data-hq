@@ -80,7 +80,9 @@ DEFAULT_APPS = (
 )
 
 HQ_APPS = (
-    'django_extensions',
+    # we remove 'django_extensions' for the buildserver, since it doesn't
+    # play nice with keyczar
+    #'django_extensions',
     'django_rest_interface',
     'django_granular_permissions',
     'django_tables',
