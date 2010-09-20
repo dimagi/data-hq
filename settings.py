@@ -77,11 +77,10 @@ DEFAULT_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'couchdbkit.ext.django',
 )
 
 HQ_APPS = (
-    # we remove 'django_extensions' for the buildserver, since it doesn't
-    # play nice with keyczar
     #'django_extensions',
     'django_rest_interface',
     'django_granular_permissions',
@@ -89,17 +88,20 @@ HQ_APPS = (
     'django_user_registration',
     #'corehq.apps.auditor',
     'corehq.apps.domain',
-    'corehq.apps.receiver',
+    #'corehq.apps.receiver',
     'corehq.apps.hqwebapp',
     'corehq.apps.program',
-    'corehq.apps.phone',
+    #'corehq.apps.phone',
     'corehq.apps.logtracker',
     'corehq.apps.releasemanager',
     'corehq.apps.requestlogger',
     # lame: xforms needs to be run last
     # because it resets xmlrouter, which breaks functionality in
     # other code which is dependent on xmlrouter's global initialization
-    'corehq.apps.xforms',
+    #'corehq.apps.xforms',
+    'couchforms',
+    'couchexport',
+    'new_xforms',
     'south',
 )
 
@@ -116,16 +118,8 @@ INSTALLED_APPS = DEFAULT_APPS + HQ_APPS
 LOGIN_REDIRECT_URL='/'
 
 
-DATA_PATH="data"
-####### Receiver Settings #######
-RECEIVER_SUBMISSION_PATH=os.path.join(DATA_PATH,"submissions")
-RECEIVER_ATTACHMENT_PATH=os.path.join(DATA_PATH,"attachments")
-RECEIVER_EXPORT_PATH=DATA_PATH
-
-####### XFormManager Settings #######
-XFORMS_SCHEMA_PATH=os.path.join(DATA_PATH,"schemas")
-XFORMS_EXPORT_PATH=DATA_PATH
 XFORMS_FORM_TRANSLATE_JAR="submodules/core-hq-src/lib/form_translate.jar"
+
 
 ####### ReleaseManager settings  #######
 RELEASE_FILE_PATH="data/release"
@@ -180,9 +174,10 @@ AUDIT_ADMIN_VIEWS = []
 
 TABS = [
     ('corehq.apps.hqwebapp.views.dashboard', 'Dashboard'),
-    ('corehq.apps.xforms.views.dashboard', 'XForms'),
-    ('corehq.apps.receiver.views.show_submits', 'Submissions'),
+#    ('corehq.apps.xforms.views.dashboard', 'XForms'),
+#    ('corehq.apps.receiver.views.show_submits', 'Submissions'),
     # ('corehq.apps.program.views.list_programs', 'Programs')
+    ('new_xforms.views.dashboard', 'Forms'),
 ]
 
 
@@ -204,19 +199,26 @@ LOG_FILE    = "datahq.log"
 LOG_FORMAT  = "[%(name)s]: %(message)s"
 LOG_BACKUPS = 256 # number of logs to keep
 
-
-####### Receiver Settings #######
-ROOT_DATA_PATH = "data"
-RECEIVER_SUBMISSION_PATH=ROOT_DATA_PATH + "/submissions"
-RECEIVER_ATTACHMENT_PATH=ROOT_DATA_PATH + "/attachments"
-RECEIVER_EXPORT_PATH=ROOT_DATA_PATH
-
-####### XFormManager Settings #######
-XFORMMANAGER_SCHEMA_PATH=ROOT_DATA_PATH + "/schemas"
-XFORMMANAGER_EXPORT_PATH=ROOT_DATA_PATH
-XFORMMANAGER_FORM_TRANSLATE_JAR="submodules/core-hq-src/lib/form_translate.jar"
-
 ####### South Settings #######
 #SKIP_SOUTH_TESTS=True
 #SOUTH_TESTS_MIGRATE=False
 
+####### Couch Forms & Couch DB Kit Settings #######
+def get_server_url(server_root, username, password):
+    if username and password:
+        return "http://%(user)s:%(pass)s@%(server)s" % \
+            {"user": username,
+             "pass": password,
+             "server": server_root }
+    else:
+        return "http://%(server)s" % {"server": server_root }
+COUCH_SERVER = get_server_url(COUCH_SERVER_ROOT, COUCH_USERNAME, COUCH_PASSWORD)
+COUCH_DATABASE = "%(server)s/%(database)s" % {"server": COUCH_SERVER, "database": COUCH_DATABASE_NAME }
+
+
+XFORMS_POST_URL = "http://%s/%s/_design/couchforms/_update/xform/" % (COUCH_SERVER_ROOT, COUCH_DATABASE_NAME)
+COUCHDB_DATABASES = [(app_label, COUCH_DATABASE) for app_label in [
+        'couchforms',
+        'couchexport',
+        'new_xforms'
+]]

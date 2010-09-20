@@ -26,10 +26,11 @@ urlpatterns = patterns('',
     # apps so they all have proper prefixing.
     (r'', include('corehq.apps.hqwebapp.urls')),
     (r'', include('corehq.apps.domain.urls')),
-    (r'', include('corehq.apps.receiver.urls')),
-    (r'', include('corehq.apps.xforms.urls')),
+#    (r'', include('corehq.apps.receiver.urls')),
+#    (r'', include('corehq.apps.xforms.urls')),
     (r'', include('corehq.apps.program.urls')),
     (r'', include('corehq.apps.phone.urls')),
+    (r'^forms/', include('new_xforms.urls')),
     (r'user_registration', include("django_user_registration.urls"))
 )
 
