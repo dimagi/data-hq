@@ -37,10 +37,10 @@ def format_csv(rows, columns, name, is_single=False, file=None, empty_representa
         response["content-disposition"] = 'attachment; filename="%s-%s.csv"' % \
             (name, str(datetime.now().date()))
     
-    if(empty_representation is not 'None'):
+    if(empty_representation != 'None'):
         for row in rows:
             for el in row:
-                if(el == 'None'):
+                if(el == None):
                     el = empty_representation
                     
     
