@@ -38,10 +38,12 @@ def format_csv(rows, columns, name, is_single=False, file=None, empty_representa
             (name, str(datetime.now().date()))
     
     if(empty_representation != 'None'):
-        for row in rows:
-            for el in row:
+        for i,row in enumerate(rows): 
+            lrow = list(row)
+            for j,el in enumerate(lrow):
                 if(el == None):
-                    el = empty_representation
+                    lrow[j] = empty_representation
+            rows[i] = tuple(lrow) #replace old row with new tuple
                     
     
     w = UnicodeWriter(response)

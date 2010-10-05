@@ -699,7 +699,7 @@ def delete_data(request, formdef_id, template='confirm_multiple_delete.html'):
 
 def get_temp_csv(elem,empty_representation='None'):
     empty_repr = empty_representation
-    temp = tempfile.NamedTemporaryFile()
+    temp = tempfile.NamedTemporaryFile(delete=False)
     format_csv(elem.get_rows(), elem.get_column_names(), '', file=temp,empty_representation = empty_repr)
     # this isn't that nice, but closing temp would delete it
     # and we need to make sure the file has been written to:
@@ -714,7 +714,6 @@ def export_csv(request, formdef_id):
 
     
     empty_rep = request.GET.get('empty_representation',False)
-    
     
     if ElementDefModel.objects.filter(parent=root).count():
         tempfiles = []
