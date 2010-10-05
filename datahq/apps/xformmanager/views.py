@@ -697,9 +697,10 @@ def delete_data(request, formdef_id, template='confirm_multiple_delete.html'):
     context['formdef_id'] = formdef_id
     return render_to_response(request, template, context)
 
-def get_temp_csv(elem):
+def get_temp_csv(elem,empty_representation='None'):
+    empty_repr = empty_representation
     temp = tempfile.NamedTemporaryFile()
-    format_csv(elem.get_rows(), elem.get_column_names(), '', file=temp)
+    format_csv(elem.get_rows(), elem.get_column_names(), '', file=temp,empty_representation = empty_repr)
     # this isn't that nice, but closing temp would delete it
     # and we need to make sure the file has been written to:
     temp.flush()
@@ -710,6 +711,11 @@ def get_temp_csv(elem):
 def export_csv(request, formdef_id):
     xsd = get_object_or_404( FormDefModel, pk=formdef_id)
     root = xsd.element
+
+    
+    empty_rep = request.GET.get('empty_representation',False)
+    
+    
     if ElementDefModel.objects.filter(parent=root).count():
         tempfiles = []
         
@@ -726,16 +732,22 @@ def export_csv(request, formdef_id):
         while current.count():
             for element in current:
                 if element not in visited:
-                    tempfiles.append( (get_temp_csv(element), make_filename(element.table_name)) )
+                    if(empty_rep):
+                        temp_csv = get_temp_csv(element,empty_representation = empty_rep)
+                    else:
+                        temp_csv = get_temp_csv(element)
+                    tempfiles.append( (temp_csv, make_filename(element.table_name)) )
                     visited.add(element)
             current = ElementDefModel.objects.filter(parent__in=current)
     
     
         return get_zipfile([(temp.name, filename) for (temp, filename) in tempfiles], "%s_%s.zip" % (xsd.form_name, str(datetime.now().date())))
     else:
-        return format_csv(root.get_rows(), root.get_column_names(), xsd.form_name)
-
-
+        if(empty_rep):
+            return format_csv(root.get_rows(), root.get_column_names(), xsd.form_name,empty_representation = empty_rep)
+        else:
+            return format_csv(root.get_rows(), root.get_column_names(), xsd.form_name)
+                    
 def readable_xform(req):
     """Get a readable xform"""
     

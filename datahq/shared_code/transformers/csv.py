@@ -29,13 +29,21 @@ def get_csv_from_django_query(qs, fields=None):
     name = slugify(model.__name__)
     return format_csv(rows, headers, name)
 
-def format_csv(rows, columns, name, is_single=False, file=None):
+def format_csv(rows, columns, name, is_single=False, file=None, empty_representation = 'None'):
     if file:
         response = file
     else:
         response = HttpResponse(mimetype='text/csv')
         response["content-disposition"] = 'attachment; filename="%s-%s.csv"' % \
             (name, str(datetime.now().date()))
+    
+    if(empty_representation is not 'None'):
+        for row in rows:
+            for el in row:
+                if(el == 'None'):
+                    el = empty_representation
+                    
+    
     w = UnicodeWriter(response)
     w.writerow(columns)
     if is_single:
