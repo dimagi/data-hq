@@ -90,6 +90,7 @@ HQ_APPS = (
     'datahq.apps.hqwebapp',
     'datahq.apps.program',
     'datahq.apps.phone',
+    'datahq.apps.downloads',
     # lame: xformmanager needs to be run last
     # because it resets xmlrouter, which breaks functionality in
     # other code which is dependent on xmlrouter's global initialization
@@ -118,6 +119,9 @@ RECEIVER_EXPORT_PATH="data"
 XFORMMANAGER_SCHEMA_PATH="data/schemas"
 XFORMMANAGER_EXPORT_PATH="data"
 XFORMMANAGER_FORM_TRANSLATE_JAR="lib/form_translate.jar"
+
+###### Upload/Download storage locations #####
+UPLOADED_APP_STORAGE_PATH="data/apps"
 
 ####### Domain settings  #######
 
@@ -161,6 +165,7 @@ TABS = [
     ('hqwebapp.views.dashboard', 'Dashboard'),
     ('xformmanager.views.dashboard', 'XForms'),
     ('receiver.views.show_submits', 'Submissions'),
+    ('downloads.views.downloads_dashboard', 'Downloads'),
     # ('program.views.list_programs', 'Programs')
 ]
 

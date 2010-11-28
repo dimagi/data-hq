@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     (r'', include('xformmanager.urls')),
     (r'', include('program.urls')),
     (r'', include('phone.urls')),
+    (r'', include('downloads.urls')),
     (r'user_registration', include("user_registration.urls"))
 )
 

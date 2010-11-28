@@ -1,0 +1,33 @@
+{% extends "hqwebapp/base.html" %}
+{% load i18n %}
+{% load hq_shared_tags %}
+{% load mainreport_tags %}
+{% block title %}{% trans "Javarosa Downloads" %}{% endblock %}
+{% block page_stylesheets %}
+    <link type="text/css" rel="stylesheet" href="{{MEDIA_URL}}/downloads/stylesheets/downloads.css" />
+{% endblock %}
+{% block org_content %}
+
+<h2>:: {%trans "Javarosa Downloads"%} ::</h2>
+{% if message %}
+	<span class="message">{{ message }}</span>
+	<br>
+	<br>
+{% endif %}
+<h3>Available Downloads {% if domain %} for domain: <span class="domain">{{ domain }}</span> {% endif %}</h3>
+<table>
+	<thead>
+		<th>Description</th>
+		<th>Version</th>
+	</thead>
+	
+	<tbody>
+	{% for desc, meta_data in links.items %}	
+		<tr class="{% cycle "odd" "even" %}">
+			<td><a href="{{MEDIA_URL}}/{{ meta_data.link }}">{% autoescape off %}{{ desc }}{% endautoescape %}</a></td> 
+			<td>{{ meta_data.version }}</td>
+		</tr> 
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
