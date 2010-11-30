@@ -72,6 +72,18 @@ def findParamInfo(file,searchExp):
     return str
 
     
+def edit_jad(jad_file_loc, domain, post_url, list_url):
+    midlet_url = settings.DATAHQ_URL+"/download/"+str(domain)+"/jar"
+    if domain == "default":
+        post_url = settings.JAVAROSA_DEFAULT_POST_URL
+        form_list_url = settings.JAVAROSA_DEFAULT_FORM_LIST_URL
+    else:
+        post_url = post_url
+        form_list_url = post_url+"/formList"
+        
+    set_JRDemo_Post_Url(jad_file_loc, post_url)
+    set_JRDemo_Post_Url_List(jad_file_loc, form_list_url)
+    set_midlet_url(jad_file_loc, midlet_url)
 
 def find_or_create_domain_jad(domain=None):
     if domain:
@@ -109,30 +121,21 @@ def find_or_create_domain_jad(domain=None):
         jad.version = ver
         jad.description = "Auto Genereated Jad for domain "+str(domain)
         midlet_url = settings.DATAHQ_URL+"/download/"+str(domain)+"/jar"
-        set_midlet_url(jad_file_loc, midlet_url)
         jad.midlet_url = midlet_url
         
         post_url = settings.DATAHQ_URL+"/receiver/submit/"+str(domain)
         if domain == "default":
-            set_JRDemo_Post_Url(jad_file_loc, settings.JAVAROSA_DEFAULT_POST_URL)
             jad.form_post_url = settings.JAVAROSA_DEFAULT_POST_URL
-            form_list_url = settings.JAVAROSA_DEFAULT_FORM_LIST_URL
+            jad.form_list_url = settings.JAVAROSA_DEFAULT_FORM_LIST_URL
         else:
-            set_JRDemo_Post_Url(jad_file_loc, post_url)
             jad.form_post_url = post_url
-            form_list_url = post_url+"/formList"
-            
-            
-        
-        
-        
-        set_JRDemo_Post_Url_List(jad_file_loc, form_list_url)
-        jad.form_list_url = form_list_url
-        
+            jad.form_list_url = post_url+"/formList"
+
         jad.save()
     else:
         jad = jads[0]
         
+    edit_jad(jad_file_loc,domain,jad.form_post_url,jad.form_list_url)
     return jad
 
 def find_or_create_domain_jar(domain=None):
