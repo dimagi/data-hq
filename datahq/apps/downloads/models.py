@@ -1,7 +1,6 @@
 from django.db import models
 from datahq.apps.domain.models import Domain
 from django import forms
-from datahq.shared_code.multifile import multifile
 
 class JarDownloadItem(models.Model):
     
@@ -9,11 +8,12 @@ class JarDownloadItem(models.Model):
     description = models.CharField(max_length=255)
     uri = models.CharField(max_length=255, blank=False, null=False)  #path to file on disk or web url
     version = models.CharField(max_length=255)
-    domain = models.ForeignKey(Domain)
+    domain = models.ForeignKey(Domain, null=True)
     name = models.CharField(max_length=255, blank=False, null=False)
+    default_version = models.BooleanField()
     
     def __unicode__(self):
-        return "Name: "+self.filename + ", Ver: "+self.version+ ", Description: "+self.description
+        return "Name: "+self.filename + ", Ver: "+self.version+ ", Description: "+self.description+ ", uri:" + self.uri
 
 
 # Create your models here.
@@ -33,18 +33,19 @@ class JadDownloadItem(models.Model):
     uri = models.CharField(max_length=255, blank=False, null=False)
     form_list_url = models.CharField(max_length=255)
     form_post_url = models.CharField(max_length=255)
+    midlet_url = models.CharField(max_length=255)
     version = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    is_original = models.BooleanField(null=False,blank=False,description="Is this the original Jad that came with the Jar?")
+    is_original = models.BooleanField(null=False,blank=False) #Is this the original Jad that came with the Jar?
     jar = models.ForeignKey(JarDownloadItem, null=False, blank=False)
     
     def __unicode__(self):
-        return "Version: "+self.version + ", Description: "+self.description
+        return "uri:" + self.uri + ", Version: "+self.version + ", Description: "+self.description
     
     
 class JJUploadForm(forms.Form):
-    jar = forms.FileField(max_length=255)
     jad = forms.FileField(max_length=255)
+    jar = forms.FileField(max_length=255)
     name = forms.CharField(max_length=255)
-    description = forms.Textarea(max_length=255)
+    description = forms.CharField(max_length=255)
     version = forms.CharField(max_length=255)

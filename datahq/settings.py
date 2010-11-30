@@ -121,7 +121,16 @@ XFORMMANAGER_EXPORT_PATH="data"
 XFORMMANAGER_FORM_TRANSLATE_JAR="lib/form_translate.jar"
 
 ###### Upload/Download storage locations #####
-UPLOADED_APP_STORAGE_PATH="data/apps"
+UPLOADED_APP_STORAGE_PATH="apps/downloads/static/apps"
+
+
+###### Javarosa Client Settings ####
+# MUST INCLUDE THE /FULL/ PATH TO THE *jar* file
+JAVAROSA_DEFAULT_JAR_PATH="apps/downloads/static/apps/JavaRosa.jar"
+JAVAROSA_DEFAULT_JAR_VERSION="1.0"
+JAVAROSA_DEFAULT_FORM_LIST_URL="http://opendatakit.appspot.com/formList"
+JAVAROSA_DEFAULT_POST_URL="http://opendatakit.appspot.com/submission"
+DATAHQ_URL = "http://datahq.org"
 
 ####### Domain settings  #######
 

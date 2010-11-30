@@ -6,8 +6,9 @@
 {% block page_stylesheets %}
     <link type="text/css" rel="stylesheet" href="{{MEDIA_URL}}/downloads/stylesheets/downloads.css" />
 {% endblock %}
-{% block org_content %}
 
+
+{% block org_content %}
 <h2>:: {%trans "Javarosa Downloads"%} ::</h2>
 {% if message %}
 	<span class="message">{{ message }}</span>
@@ -30,4 +31,17 @@
 	{% endfor %}
 	</tbody>
 </table>
+
+
+Logged in is! :::: {{ show_upload }}
+{% if show_upload %}
+<form action="" method="POST" enctype="multipart/form-data">
+<br>
+{{ upload_form.as_ul }}
+<li><input type="submit" value="Submit" /></li>
+</ul>
+
+{% endif %}
+
+</form>
 {% endblock %}
