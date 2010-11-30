@@ -12,6 +12,11 @@ import logging
 from datahq.apps.downloads.models import JarDownloadItem, JadDownloadItem
 from django.conf import settings
 from datahq.apps.domain.models import Domain
+import logging
+
+ROOT = os.path.abspath(settings.__file__)
+
+
 
 def set_midlet_url(jad, new_url):
     '''
@@ -138,9 +143,10 @@ def find_or_create_domain_jar(domain=None):
         
     
     if len(jars) == 0:
-        default_jr_path = settings.JAVAROSA_DEFAULT_JAR_PATH
+        default_jr_path = os.path.join(ROOT,settings.JAVAROSA_DEFAULT_JAR_PATH)
+
         if not os.path.exists(default_jr_path):
-            raise Exception("JAVAROSA DEFAULT JAR NOT FOUND! path="+settings.JAVAROSA_DEFAULT_JAR_PATH)
+            raise Exception("JAVAROSA DEFAULT JAR NOT FOUND! path="+settings.JAVAROSA_DEFAULT_JAR_PATH+",,,,,,,"+str(os.getcwd()))
             return False
         
         
@@ -157,6 +163,9 @@ def find_or_create_domain_jar(domain=None):
             shutil.copy(default_jad_path,domain_app_folder) #don't forget to copy the jad over too
             uri = domain_app_jar_path
         else:
+#            print "TRYING TO MAKE PATH HERE!  "+str(os.path.abspath(domain_app_folder))
+            logging.error("TRYING TO MAKE PATH HERE!  "+str(os.path.abspath(domain_app_folder)))
+            logging.error("os.path.abspath('.') = "+os.path.abspath("."))
             os.makedirs(domain_app_folder)
             shutil.copy(default_jr_path,domain_app_folder)
             shutil.copy(default_jad_path,domain_app_folder)

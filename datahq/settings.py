@@ -126,7 +126,7 @@ UPLOADED_APP_STORAGE_PATH="apps/downloads/static/apps"
 
 ###### Javarosa Client Settings ####
 # MUST INCLUDE THE /FULL/ PATH TO THE *jar* file
-JAVAROSA_DEFAULT_JAR_PATH="apps/downloads/static/apps/JavaRosa.jar"
+JAVAROSA_DEFAULT_JAR_PATH="/opt/datahq_src/data-hq/datahq/lib/JavaRosa.jar"
 JAVAROSA_DEFAULT_JAR_VERSION="1.0"
 JAVAROSA_DEFAULT_FORM_LIST_URL="http://opendatakit.appspot.com/formList"
 JAVAROSA_DEFAULT_POST_URL="http://opendatakit.appspot.com/submission"
