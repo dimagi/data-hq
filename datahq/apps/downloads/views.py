@@ -10,7 +10,7 @@ from datahq.apps.downloads.models import JadDownloadItem, JadDownloadItem
 from datahq.apps.downloads import utils
 from django.core.servers.basehttp import FileWrapper
 
-JAVAROSA_FILENAME="somejad.jad"
+JAVAROSA_LINK = settings.DATAHQ_URL+"/download/"
 JAVAROSA_VERSION="1.0"
 
 def downloads_dashboard(request, template_name="downloads/downloads.html"):
@@ -26,7 +26,7 @@ def downloads_dashboard(request, template_name="downloads/downloads.html"):
         else:
             context.update({"message": "User has not selected a domain! To download a customized version of Javarosa please select a HQ Domain."})
     
-    links.update({"J2ME Javarosa Standard with Default Settings": {"version":JAVAROSA_VERSION,"link":"downloads/jr/"+JAVAROSA_FILENAME}})
+    links.update({"J2ME Javarosa Standard with Default Settings": {"version":JAVAROSA_VERSION,"link":JAVAROSA_LINK}})
              
     context["links"]=links
     context['upload_form'] = JJUploadForm()
@@ -45,8 +45,8 @@ def downloads_dashboard_for_domain(request, domain, template_name="downloads/dow
     context = {}
     context.update({"domain":str(domain)})
     links = {}
-    href = "downloads/"+str(domain)+"/jr/"+JAVAROSA_FILENAME
-    links.update({"J2ME Javarosa Standard with Default Settings": {"version":JAVAROSA_VERSION,"link":"downloads/jr/"+JAVAROSA_FILENAME}})
+    href = JAVAROSA_LINK+str(domain)
+    links.update({"J2ME Javarosa Standard with Default Settings": {"version":JAVAROSA_VERSION,"link":JAVAROSA_LINK}})
     links.update({"<b>Custom Javarosa version for domain: "+str(domain).upper()+"</b>": {"version":JAVAROSA_VERSION,"link":href}})    
              
     context["links"]=links

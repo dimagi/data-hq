@@ -25,7 +25,7 @@
 	<tbody>
 	{% for desc, meta_data in links.items %}	
 		<tr class="{% cycle "odd" "even" %}">
-			<td><a href="{{MEDIA_URL}}/{{ meta_data.link }}">{% autoescape off %}{{ desc }}{% endautoescape %}</a></td> 
+			<td><a href="{{ meta_data.link }}">{% autoescape off %}{{ desc }}{% endautoescape %}</a></td> 
 			<td>{{ meta_data.version }}</td>
 		</tr> 
 	{% endfor %}

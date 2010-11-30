@@ -35,6 +35,7 @@ def set_JRDemo_Post_Url_List(jad, new_url):
     Sets the JRDemo-Post-Url-List to specified
     '''
     _replaceAll(jad, "JRDemo-Post-Url-List:", "JRDemo-Post-Url-List: "+new_url+"\r\n")
+    _replaceAll(jad, "Form-Server-Url:", "Form-Server-Url: "+new_url+"\r\n")
 
 #def _replaceAll(file,searchExp,replaceExp):
 #    for line in fileinput.input(file, inplace=1):
@@ -164,8 +165,8 @@ def find_or_create_domain_jar(domain=None):
             uri = domain_app_jar_path
         else:
 #            print "TRYING TO MAKE PATH HERE!  "+str(os.path.abspath(domain_app_folder))
-            logging.error("TRYING TO MAKE PATH HERE!  "+str(os.path.abspath(domain_app_folder)))
-            logging.error("os.path.abspath('.') = "+os.path.abspath("."))
+#            logging.error("TRYING TO MAKE PATH HERE!  "+str(os.path.abspath(domain_app_folder)))
+#            logging.error("os.path.abspath('.') = "+os.path.abspath("."))
             os.makedirs(domain_app_folder)
             shutil.copy(default_jr_path,domain_app_folder)
             shutil.copy(default_jad_path,domain_app_folder)
