@@ -134,7 +134,6 @@ def thanks(request):
 #        return HttpResponseNotFound()
     
 def download_jad(request, domain=None):
-    print "IN DOWNLOAD_JAD, DOMAIN="+str(domain)
     jad = utils.find_or_create_domain_jad(domain)
     
     if jad:
