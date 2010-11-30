@@ -121,7 +121,7 @@ XFORMMANAGER_EXPORT_PATH="data"
 XFORMMANAGER_FORM_TRANSLATE_JAR="lib/form_translate.jar"
 
 ###### Upload/Download storage locations #####
-UPLOADED_APP_STORAGE_PATH="/var/django_sites/static_media/downloads/static/apps"
+UPLOADED_APP_STORAGE_PATH="/var/django_sites/static_media/downloads/apps"
 
 
 ###### Javarosa Client Settings ####
