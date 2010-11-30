@@ -34,7 +34,7 @@ MEDIA_ROOT = ''
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/static'
+MEDIA_URL = 'http://datahq.org/static'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -121,12 +121,12 @@ XFORMMANAGER_EXPORT_PATH="data"
 XFORMMANAGER_FORM_TRANSLATE_JAR="lib/form_translate.jar"
 
 ###### Upload/Download storage locations #####
-UPLOADED_APP_STORAGE_PATH="apps/downloads/static/apps"
+UPLOADED_APP_STORAGE_PATH="/var/django_sites/static_media/downloads/static/apps"
 
 
 ###### Javarosa Client Settings ####
 # MUST INCLUDE THE /FULL/ PATH TO THE *jar* file
-JAVAROSA_DEFAULT_JAR_PATH="/opt/datahq_src/data-hq/datahq/lib/JavaRosa.jar"
+JAVAROSA_DEFAULT_JAR_PATH="/var/django_sites/datahq/lib/JavaRosa.jar"
 JAVAROSA_DEFAULT_JAR_VERSION="1.0"
 JAVAROSA_DEFAULT_FORM_LIST_URL="http://opendatakit.appspot.com/formList"
 JAVAROSA_DEFAULT_POST_URL="http://opendatakit.appspot.com/submission"

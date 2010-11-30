@@ -14,7 +14,7 @@ from django.conf import settings
 from datahq.apps.domain.models import Domain
 import logging
 
-ROOT = os.path.abspath(settings.__file__)
+#ROOT = os.path.abspath(.)
 
 
 
@@ -143,7 +143,7 @@ def find_or_create_domain_jar(domain=None):
         
     
     if len(jars) == 0:
-        default_jr_path = os.path.join(ROOT,settings.JAVAROSA_DEFAULT_JAR_PATH)
+        default_jr_path = settings.JAVAROSA_DEFAULT_JAR_PATH
 
         if not os.path.exists(default_jr_path):
             raise Exception("JAVAROSA DEFAULT JAR NOT FOUND! path="+settings.JAVAROSA_DEFAULT_JAR_PATH+",,,,,,,"+str(os.getcwd()))
