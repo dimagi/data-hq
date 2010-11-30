@@ -13,7 +13,7 @@ class JarDownloadItem(models.Model):
     default_version = models.BooleanField()
     
     def __unicode__(self):
-        return "Name: "+self.filename + ", Ver: "+self.version+ ", Description: "+self.description+ ", uri:" + self.uri
+        return "Name: "+self.name + ", Ver: "+self.version+ ", Description: "+self.description+ ", uri:" + self.uri
 
 
 # Create your models here.
