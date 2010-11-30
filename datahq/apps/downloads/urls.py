@@ -8,5 +8,7 @@ urlpatterns = patterns('',
     url(r'^download/jar/$', 'downloads.views.download_default_jar'),
     url(r'^download/(?P<domain>.*)/jar/$', 'downloads.views.download_jar'),
     url(r'^download/(?P<domain>.*)/$', 'downloads.views.download_jad'),
-    
+    url(r'^app/default/download/$', 'downloads.views.download_default_jad'),
+    url(r'^app/(?P<domain>.*)/$', 'downloads.views.download_jad'),
+
 )
