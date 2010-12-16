@@ -34,7 +34,7 @@ MEDIA_ROOT = ''
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/static'
+MEDIA_URL = 'http://datahq.org/static'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -90,6 +90,7 @@ HQ_APPS = (
     'datahq.apps.hqwebapp',
     'datahq.apps.program',
     'datahq.apps.phone',
+    'datahq.apps.downloads',
     # lame: xformmanager needs to be run last
     # because it resets xmlrouter, which breaks functionality in
     # other code which is dependent on xmlrouter's global initialization
@@ -118,6 +119,18 @@ RECEIVER_EXPORT_PATH="data"
 XFORMMANAGER_SCHEMA_PATH="data/schemas"
 XFORMMANAGER_EXPORT_PATH="data"
 XFORMMANAGER_FORM_TRANSLATE_JAR="lib/form_translate.jar"
+
+###### Upload/Download storage locations #####
+UPLOADED_APP_STORAGE_PATH="/var/django_sites/static_media/downloads/apps"
+
+
+###### Javarosa Client Settings ####
+# MUST INCLUDE THE /FULL/ PATH TO THE *jar* file
+JAVAROSA_DEFAULT_JAR_PATH="/var/django_sites/datahq/lib/JavaRosa.jar"
+JAVAROSA_DEFAULT_JAR_VERSION="1.0"
+JAVAROSA_DEFAULT_FORM_LIST_URL="http://opendatakit.appspot.com/formList"
+JAVAROSA_DEFAULT_POST_URL="http://opendatakit.appspot.com/submission"
+DATAHQ_URL = "http://datahq.org"
 
 ####### Domain settings  #######
 
@@ -161,6 +174,7 @@ TABS = [
     ('hqwebapp.views.dashboard', 'Dashboard'),
     ('xformmanager.views.dashboard', 'XForms'),
     ('receiver.views.show_submits', 'Submissions'),
+    ('downloads.views.downloads_dashboard', 'Downloads'),
     # ('program.views.list_programs', 'Programs')
 ]
 

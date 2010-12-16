@@ -1,0 +1,14 @@
+MIDlet-Name: JavaRosa
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: OpenRosa Consortium
+MIDlet-Jar-URL: http://datahq.org/download/default/jar
+MIDlet-Jar-Size: 505795
+MIDlet-Description: Mobile Data Collection
+MIDlet-Info-URL: http://code.javarosa.org/
+MIDlet-1: JavaRosa,,org.javarosa.demo.midlet.JRDemoMidlet
+App-Version: v1.0.0alpha
+Form-Server-Url: http://opendatakit.appspot.com/formList
+JR-Build-Version: 5b226254820e
+JRDemo-Build-Version: 5b226254820e
+JRDemo-Post-Url: http://opendatakit.appspot.com/submission
+Polish-Device: Nokia/6085
