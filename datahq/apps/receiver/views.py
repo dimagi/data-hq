@@ -223,7 +223,7 @@ def _do_domain_submission(request, domain_name, is_resubmission=False):
                 continue
         # either no one handled it, or they didn't want to override the 
         # response.  This falls back to the old default. 
-        response = SubmitResponse(status_code=200, or_status_code=2000,
+        response = SubmitResponse(status_code=201, or_status_code=2000,
                                   submit_id=new_submission.id,
                                   **receiver_params)
         return response.to_response()
