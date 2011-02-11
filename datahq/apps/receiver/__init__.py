@@ -14,7 +14,7 @@ def duplicate_attachment(way_handled, additional_params):
         # NOTE: this possibly shouldn't be a "200" code, but it is for 
         # now because it's not clear how JavaRosa will handle 202.
         # see: http://code.dimagi.com/JavaRosa/wiki/ServerResponseFormat
-        response = SubmitResponse(status_code=200, or_status_code=2020, 
+        response = SubmitResponse(status_code=201, or_status_code=2020, 
                                   or_status="Duplicate Submission.",
                                   submit_id=way_handled.submission.id,
                                   **additional_params)

@@ -1,5 +1,6 @@
 from lxml import etree
 from django.http import HttpResponse
+from django.conf import settings
 
 
 # standard xml tags for the OR-compliant forms
@@ -50,8 +51,11 @@ class SubmitResponse(object):
     
     def to_response(self):
         '''Gets this object as a django HTTP response'''
-        return HttpResponse(content=str(self), status=self.status_code, 
+        resp = HttpResponse(content=str(self), status=self.status_code, 
                             content_type="text/xml")
+        if(self.status_code == 201):
+            resp['Location'] = settings.DATAHQ_URL
+        return resp
         
     
     def __unicode__(self):

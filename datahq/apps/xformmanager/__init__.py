@@ -21,7 +21,7 @@ def instance_data(way_handled, additional_params):
             submits_today = meta.get_submission_count(startdate, enddate)
             startdate = datetime.min
             submits_all_time = meta.get_submission_count(startdate, enddate)
-            response = SubmitResponse(status_code=200, forms_sent_today=submits_today,
+            response = SubmitResponse(status_code=201, forms_sent_today=submits_today,
                                       submit_id=way_handled.submission.id, 
                                       or_status_code=2000, 
                                       or_status=SUCCESSFUL_SUBMISSION,
